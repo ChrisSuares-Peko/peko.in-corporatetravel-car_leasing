@@ -1,0 +1,59 @@
+import { useState } from 'react';
+
+import { Scope } from '@src/enums/enums';
+import { useAppDispatch, useAppSelector } from '@src/hooks/store';
+import { showToast } from '@src/slices/apiSlice';
+
+import { signUp } from '../api/index';
+import { nextStep, setEmailVerificationData, setLoginData } from '../slices/registerSlice';
+import { ResgistrationResponse } from '../types/index';
+
+export default function useRegistrationApi() {
+    const dispatch = useAppDispatch();
+    const { formData } = useAppSelector(state => state.reducer.registration);
+    const [isError, setIsError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [email, setEmail] = useState<string>('');
+    const [corporateId, setCorporateId] = useState<number>();
+
+    const handleSignup = async (otp: string) => {
+        if (otp.length < 6) {
+            dispatch(
+                showToast({
+                    description: 'Please enter a valid OTP',
+                    variant: 'warning',
+                })
+            );
+            return;
+        }
+        setIsLoading(true);
+        const payload = {
+            name: formData.name,
+            countryCode: 91,
+            mobileNo: formData.phonenumber,
+            email: formData.email,
+            contactPersonName: formData.contactPersonName,
+            password: formData.password,
+            phoneOtp: otp,
+            scope: Scope.MOBILE,
+            referralCode: formData.referralCode,
+             privacyPolicyAccepted: formData.privacyPolicyAccepted,
+            platformAgreementAccepted: formData.platformAgreementAccepted,
+            marketingConsent: formData?.marketingConsent,
+        };
+        const response: ResgistrationResponse | false = await signUp(payload);
+        if (response) {
+            setCorporateId(response.id);
+            setEmail(response.email);
+            dispatch(setLoginData({ ...response }));
+            dispatch(setEmailVerificationData({ ...response }));
+            dispatch(nextStep());
+            setIsLoading(false);
+        } else {
+            setIsError(true);
+            setIsLoading(false);
+        }
+    };
+
+    return { handleSignup, isError, isLoading, email, corporateId };
+}

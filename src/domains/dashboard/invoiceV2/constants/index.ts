@@ -1,0 +1,57 @@
+const INDIAN_STATES = [
+    'Andhra Pradesh',
+    'Arunachal Pradesh',
+    'Assam',
+    'Bihar',
+    'Chhattisgarh',
+    'Goa',
+    'Gujarat',
+    'Haryana',
+    'Himachal Pradesh',
+    'Jharkhand',
+    'Karnataka',
+    'Kerala',
+    'Madhya Pradesh',
+    'Maharashtra',
+    'Manipur',
+    'Meghalaya',
+    'Mizoram',
+    'Nagaland',
+    'Odisha',
+    'Punjab',
+    'Rajasthan',
+    'Sikkim',
+    'Tamil Nadu',
+    'Telangana',
+    'Tripura',
+    'Uttar Pradesh',
+    'Uttarakhand',
+    'West Bengal',
+    'Andaman and Nicobar Islands',
+    'Chandigarh',
+    'Dadra and Nagar Haveli and Daman and Diu',
+    'Delhi',
+    'Jammu and Kashmir',
+    'Ladakh',
+    'Lakshadweep',
+    'Puducherry',
+];
+
+export const STATE_OPTIONS = INDIAN_STATES.map(s => ({ label: s, value: s }));
+
+export const PAYMENT_METHODS = ['Cash', 'Bank Transfer', 'Cheque', 'UPI'].map(v => ({
+    label: v,
+    value: v,
+}));
+
+export const BANK_NAMES: Record<string, string> = {
+    HDFC: 'HDFC Bank',
+    ICIC: 'ICICI Bank',
+    SBIN: 'State Bank of India',
+    KKBK: 'Kotak Mahindra Bank',
+    UTIB: 'Axis Bank',
+    PUNB: 'Punjab National Bank',
+    BARB: 'Bank of Baroda',
+    CNRB: 'Canara Bank',
+    IOBA: 'Indian Overseas Bank',
+};

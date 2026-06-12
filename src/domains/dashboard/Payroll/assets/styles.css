@@ -1,0 +1,15 @@
+.ant-table-filter-dropdown-btns .ant-btn-primary {
+    background-color: #ff3a3a;
+}
+
+/* Remove unnecessary bottom scroll space in TimePicker */
+.ant-picker-time-panel-column {
+    padding-bottom: 0 !important;
+}
+
+/* Reduce extra top spacing as well */
+.ant-picker-time-panel-column::after {
+    height: 0 !important;
+}
+
+

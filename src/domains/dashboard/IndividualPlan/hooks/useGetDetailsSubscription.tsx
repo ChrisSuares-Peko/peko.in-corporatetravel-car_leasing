@@ -1,0 +1,39 @@
+import { useCallback, useEffect, useState } from 'react';
+
+import { getPurchaseDetailsApi } from '../api';
+import { PackageDetails, PreviousSubscription, SubscriptionDetailsResponse } from '../types';
+
+export function useGetDetailsSubscription(accessKey: string, serviceAccessKey?: string) {
+    const [subscriptionData, setSubscriptionData] = useState<{
+        packageDetails: PackageDetails[];
+        isPurchased: boolean;
+        previousSubscription: PreviousSubscription;
+    } | null>(null);
+
+    const [isLoading, setIsLoading] = useState(true);
+
+    const getSubscriptionData = useCallback(async () => {
+        setIsLoading(true);
+        const resp: SubscriptionDetailsResponse | false = await getPurchaseDetailsApi(
+            accessKey,
+            serviceAccessKey
+        );
+        if (resp) {
+            setSubscriptionData(resp);
+            sessionStorage.setItem(
+                'subscriptionDetails',
+                JSON.stringify({ isPurchased: resp.isPurchased })
+            );
+        }
+        setIsLoading(false);
+    }, [accessKey, serviceAccessKey]);
+
+    useEffect(() => {
+        getSubscriptionData();
+        return () => {
+            sessionStorage.removeItem('subscriptionDetails');
+        };
+    }, [getSubscriptionData]);
+
+    return { isLoading, subscriptionData };
+}
