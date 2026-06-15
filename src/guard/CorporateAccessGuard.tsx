@@ -9,6 +9,8 @@ import { checkServiceAccessAndSubService } from '@utils/checkAccess';
 
 import CorporateAccessLoadingSkeleton from './CorporateAccessLoadingSkeleton';
 
+const PROTOTYPE_MODE = import.meta.env.VITE_PROTOTYPE_MODE === 'true';
+
 
 type CorporateAccessGuardProps = {
     children: React.ReactNode;
@@ -28,6 +30,8 @@ const whitelabeledRoutes = [
 ];
 
 export default function CorporateAccessGuard({ children }: CorporateAccessGuardProps) {
+    if (PROTOTYPE_MODE) return <>{children}</>;
+
     const { roleName } = useAppSelector(state => state.reducer.auth);
     const { services } = useAppSelector(state => state.reducer.services);
     const location = useLocation();

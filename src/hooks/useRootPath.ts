@@ -6,6 +6,8 @@ import { paths } from '@src/routes/paths';
 export const useRootPath = () => {
     const { role } = useAppSelector(state => state.reducer.auth);
 
+    if (import.meta.env.VITE_PROTOTYPE_MODE === 'true') return paths.dashboard.home;
+
     switch (role) {
         case UserRole.CORPORATE:
             return paths.dashboard.home;
