@@ -1,54 +1,261 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Card, Col, Flex, Row, Typography } from 'antd';
-import { ReactSVG } from 'react-svg';
+import { Button, Card, Col, DatePicker, Flex, Input, Row, Tabs, TimePicker, Typography } from 'antd';
 
-import CarRentalsIcon from '@domains/dashboard/MoreServices/assets/icons/CarLeasing.svg';
+const popularRoutes = [
+    { route: 'Mumbai to Pune', price: '₹3,960' },
+    { route: 'Bangalore to Mysore', price: '₹3,960' },
+    { route: 'Delhi to Agra', price: '₹4,200' },
+    { route: 'Chennai to Bangalore', price: '₹5,500' },
+    { route: 'Hyderabad to Vijayawada', price: '₹3,200' },
+    { route: 'Delhi to Jaipur', price: '₹4,800' },
+];
 
-const features = [
-    { title: 'Daily Rentals', description: 'Self-drive and chauffeur-driven cars available for day bookings' },
-    { title: 'Outstation Trips', description: 'One-way and round-trip intercity rides with professional drivers' },
-    { title: 'Airport Transfers', description: 'Scheduled pickups and drops across all major airports' },
-    { title: 'Hourly Packages', description: 'Flexible hourly hire for meetings, errands, and business runs' },
+const budgetCars = [
+    { name: 'Maruti Suzuki Dzire', price: '₹3,200' },
+    { name: 'Kia Sonet', price: '₹3,500' },
+    { name: 'Honda Amaze', price: '₹3,200' },
+    { name: 'Hyundai Aura', price: '₹3,100' },
+    { name: 'Tata Tigor', price: '₹2,900' },
+];
+
+const luxuryCars = [
+    { name: 'BMW 5 Series', price: '₹18,400' },
+    { name: 'Mercedes-Benz E-Class', price: '₹18,700' },
+    { name: 'Mercedes-Benz GLS', price: '₹23,500' },
+    { name: 'Audi A6', price: '₹17,200' },
+    { name: 'Jaguar XF', price: '₹22,500' },
 ];
 
 const CarRentalsHome = () => {
+    const [searchTab, setSearchTab] = useState('cabs');
+    const [categoryTab, setCategoryTab] = useState('car');
+    const [tierTab, setTierTab] = useState('budget');
+    const [luxuryTab, setLuxuryTab] = useState('daily');
+
     return (
         <Flex vertical gap={32}>
-            <Flex align="center" gap={16}>
-                <Flex
-                    className="w-16 h-16 bg-bgIconCard rounded-2xl"
-                    align="center"
-                    justify="center"
-                >
-                    <ReactSVG src={CarRentalsIcon} />
-                </Flex>
+            {/* Hero / Search Section */}
+            <Flex
+                vertical
+                gap={24}
+                className="rounded-2xl p-8"
+                style={{ background: '#171717' }}
+            >
                 <Flex vertical gap={4}>
-                    <Typography.Title level={4} className="!mb-0">
-                        Car Rentals
+                    <Typography.Title level={4} style={{ color: '#fff', margin: 0 }}>
+                        Book a Car
                     </Typography.Title>
-                    <Typography.Text className="text-textGreyLight text-sm">
-                        On-demand vehicle rentals for every business need
+                    <Typography.Text style={{ color: 'rgba(255,255,255,0.65)', fontSize: 14 }}>
+                        Cabs, Self Drive &amp; Luxury Rentals for Business
                     </Typography.Text>
                 </Flex>
+
+                <Card
+                    bordered={false}
+                    style={{ borderRadius: 12 }}
+                    bodyStyle={{ padding: '16px 24px' }}
+                >
+                    <Tabs
+                        activeKey={searchTab}
+                        onChange={setSearchTab}
+                        items={[
+                            {
+                                key: 'cabs',
+                                label: 'Cabs',
+                                children: (
+                                    <Row gutter={[12, 12]} align="middle">
+                                        <Col xs={24} sm={12} md={5}>
+                                            <Input placeholder="From city" size="large" />
+                                        </Col>
+                                        <Col xs={24} sm={12} md={5}>
+                                            <Input placeholder="To city" size="large" />
+                                        </Col>
+                                        <Col xs={24} sm={12} md={5}>
+                                            <DatePicker
+                                                className="w-full"
+                                                size="large"
+                                                placeholder="Date"
+                                            />
+                                        </Col>
+                                        <Col xs={24} sm={12} md={5}>
+                                            <TimePicker
+                                                className="w-full"
+                                                size="large"
+                                                placeholder="Time"
+                                                use12Hours
+                                                format="h:mm a"
+                                            />
+                                        </Col>
+                                        <Col xs={24} md={4}>
+                                            <Button type="primary" danger block size="large">
+                                                Search
+                                            </Button>
+                                        </Col>
+                                    </Row>
+                                ),
+                            },
+                            {
+                                key: 'self-drive',
+                                label: 'Self Drive',
+                                children: (
+                                    <Row gutter={[12, 12]} align="middle">
+                                        <Col xs={24} sm={12} md={6}>
+                                            <Input placeholder="Pickup city" size="large" />
+                                        </Col>
+                                        <Col xs={24} sm={12} md={6}>
+                                            <DatePicker
+                                                className="w-full"
+                                                size="large"
+                                                placeholder="Pickup date"
+                                            />
+                                        </Col>
+                                        <Col xs={24} sm={12} md={6}>
+                                            <DatePicker
+                                                className="w-full"
+                                                size="large"
+                                                placeholder="Return date"
+                                            />
+                                        </Col>
+                                        <Col xs={24} md={6}>
+                                            <Button type="primary" danger block size="large">
+                                                Search
+                                            </Button>
+                                        </Col>
+                                    </Row>
+                                ),
+                            },
+                        ]}
+                    />
+                </Card>
             </Flex>
 
-            <Row gutter={[20, 20]}>
-                {features.map((item, i) => (
-                    <Col xs={24} sm={12} lg={6} key={i}>
-                        <Card bordered={false} className="h-full">
-                            <Flex vertical gap={8}>
-                                <Typography.Text strong className="text-base">
-                                    {item.title}
-                                </Typography.Text>
-                                <Typography.Text className="text-textGreyLight text-sm">
-                                    {item.description}
-                                </Typography.Text>
-                            </Flex>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
+            {/* Popular Rental Routes */}
+            <Flex vertical gap={16}>
+                <Typography.Text className="text-xl font-medium">
+                    Popular Rental Routes
+                </Typography.Text>
+                <div style={{ overflowX: 'auto', paddingBottom: 8 }}>
+                    <Flex gap={16} style={{ width: 'max-content' }}>
+                        {popularRoutes.map((item, i) => (
+                            <Card
+                                key={i}
+                                bordered={false}
+                                style={{
+                                    width: 200,
+                                    borderRadius: 12,
+                                    boxShadow: '0px 1.94px 19.398px 0px rgba(0, 0, 0, 0.10)',
+                                    cursor: 'pointer',
+                                }}
+                            >
+                                <Flex vertical gap={6}>
+                                    <Typography.Text strong className="text-sm">
+                                        {item.route}
+                                    </Typography.Text>
+                                    <Typography.Text className="text-textGreyLight text-xs">
+                                        Starts from {item.price}
+                                    </Typography.Text>
+                                </Flex>
+                            </Card>
+                        ))}
+                    </Flex>
+                </div>
+            </Flex>
+
+            {/* Rental By Category */}
+            <Flex vertical gap={16}>
+                <Typography.Text className="text-xl font-medium">
+                    Rental By Category
+                </Typography.Text>
+                <Tabs
+                    activeKey={categoryTab}
+                    onChange={setCategoryTab}
+                    items={[
+                        { key: 'car', label: 'Car' },
+                        { key: 'vintage', label: 'Vintage Car' },
+                        { key: 'bike', label: 'Bike' },
+                        { key: 'scooter', label: 'Scooter' },
+                    ]}
+                />
+                <Tabs
+                    activeKey={tierTab}
+                    onChange={setTierTab}
+                    items={[
+                        { key: 'budget', label: 'Budget' },
+                        { key: 'mini', label: 'Mini' },
+                        { key: 'premium', label: 'Premium' },
+                        { key: 'luxury', label: 'Luxury' },
+                    ]}
+                />
+                <Row gutter={[16, 16]}>
+                    {budgetCars.map((car, i) => (
+                        <Col xs={24} sm={12} md={8} lg={6} key={i}>
+                            <Card
+                                bordered={false}
+                                className="h-full"
+                                style={{
+                                    borderRadius: 12,
+                                    boxShadow: '0px 1.94px 19.398px 0px rgba(0, 0, 0, 0.10)',
+                                }}
+                            >
+                                <Flex vertical gap={8}>
+                                    <Typography.Text strong className="text-sm">
+                                        {car.name}
+                                    </Typography.Text>
+                                    <Typography.Text className="text-textGreyLight text-xs">
+                                        Rental Starts from {car.price}
+                                    </Typography.Text>
+                                    <Button type="primary" danger size="small">
+                                        Book Now
+                                    </Button>
+                                </Flex>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
+            </Flex>
+
+            {/* Top Luxury Rentals */}
+            <Flex vertical gap={16}>
+                <Typography.Text className="text-xl font-medium">
+                    Top Luxury Rentals
+                </Typography.Text>
+                <Tabs
+                    activeKey={luxuryTab}
+                    onChange={setLuxuryTab}
+                    items={[
+                        { key: 'daily', label: 'Daily Rental' },
+                        { key: 'self-drive', label: 'Self Drive' },
+                        { key: 'wedding', label: 'Wedding' },
+                    ]}
+                />
+                <Row gutter={[16, 16]}>
+                    {luxuryCars.map((car, i) => (
+                        <Col xs={24} sm={12} md={8} lg={6} key={i}>
+                            <Card
+                                bordered={false}
+                                className="h-full"
+                                style={{
+                                    borderRadius: 12,
+                                    boxShadow: '0px 1.94px 19.398px 0px rgba(0, 0, 0, 0.10)',
+                                }}
+                            >
+                                <Flex vertical gap={8}>
+                                    <Typography.Text strong className="text-sm">
+                                        {car.name}
+                                    </Typography.Text>
+                                    <Typography.Text className="text-textGreyLight text-xs">
+                                        Rental Starts from {car.price}
+                                    </Typography.Text>
+                                    <Button type="primary" danger size="small">
+                                        Book Now
+                                    </Button>
+                                </Flex>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
+            </Flex>
         </Flex>
     );
 };
