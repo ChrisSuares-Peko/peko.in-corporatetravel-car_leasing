@@ -15,6 +15,9 @@ import {
     TimePicker,
     Typography,
 } from 'antd';
+import { useNavigate } from 'react-router-dom';
+
+import { paths } from '@src/routes/paths';
 
 const popularRoutes = [
     { route: 'Mumbai to Pune', price: '₹3,960' },
@@ -55,7 +58,9 @@ const CarRentalsHome = () => {
     const [tierTab, setTierTab] = useState('budget');
     const [luxuryTab, setLuxuryTab] = useState('daily');
 
+    const navigate = useNavigate();
     const radioClass = 'xs:text-xs md:text-sm md:font-semibold mt-1 me-4';
+    const goToResults = () => navigate(`/${paths.dashboard.carRentalsResults}`);
 
     const renderCabFields = () => {
         switch (cabSubType) {
@@ -259,7 +264,13 @@ const CarRentalsHome = () => {
                                             </Radio>
                                         </Radio.Group>
                                         {renderCabFields()}
-                                        <Button type="primary" danger block size="large">
+                                        <Button
+                                            type="primary"
+                                            danger
+                                            block
+                                            size="large"
+                                            onClick={goToResults}
+                                        >
                                             Search
                                         </Button>
                                     </Flex>
@@ -289,7 +300,13 @@ const CarRentalsHome = () => {
                                                 />
                                             </Col>
                                         </Row>
-                                        <Button type="primary" danger block size="large">
+                                        <Button
+                                            type="primary"
+                                            danger
+                                            block
+                                            size="large"
+                                            onClick={goToResults}
+                                        >
                                             Search
                                         </Button>
                                     </Flex>
