@@ -8,7 +8,21 @@ interface ApiState {
 }
 
 const initialState: ApiState = {
-    user: null,
+    user: {
+        balance: '0',
+        credentialId: 0,
+        role: 'corporate',
+        companyName: 'Demo Company',
+        roleName: 'corporate',
+        logo: '',
+        productTour: { dashboard: false, payroll: false },
+        gstVerified: false,
+        panVerified: false,
+        contactPersonName: 'Demo User',
+        email: 'demo@peko.in',
+        mobileNo: '9999999999',
+        chatId: '',
+    },
     notifications: null,
 };
 
