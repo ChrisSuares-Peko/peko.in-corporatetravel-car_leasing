@@ -19,6 +19,22 @@ import { useNavigate } from 'react-router-dom';
 
 import { paths } from '@src/routes/paths';
 
+const CARD_SHADOW = '0px 1.94px 19.398px 0px rgba(0, 0, 0, 0.10)';
+
+const CITIES = [
+    { value: 'Mumbai', label: 'Mumbai' },
+    { value: 'Delhi', label: 'Delhi' },
+    { value: 'Bangalore', label: 'Bangalore' },
+    { value: 'Chennai', label: 'Chennai' },
+    { value: 'Hyderabad', label: 'Hyderabad' },
+    { value: 'Pune', label: 'Pune' },
+];
+
+const VEHICLE_TYPES = [
+    { value: 'bike', label: 'Bike' },
+    { value: 'scooter', label: 'Scooter' },
+];
+
 const popularRoutes = [
     { route: 'Mumbai to Pune', price: '₹3,960' },
     { route: 'Bangalore to Mysore', price: '₹3,960' },
@@ -50,7 +66,14 @@ const durationOptions = [
     { value: '12hrs', label: '12hrs / 120kms' },
 ];
 
+const FieldLabel = ({ children }: { children: string }) => (
+    <Typography.Text className="text-xs text-textGreyLight" style={{ display: 'block' }}>
+        {children}
+    </Typography.Text>
+);
+
 const CarRentalsHome = () => {
+    const [mainTab, setMainTab] = useState('cars');
     const [searchTab, setSearchTab] = useState('cabs');
     const [cabSubType, setCabSubType] = useState('one-way');
     const [airportDirection, setAirportDirection] = useState('drop');
@@ -68,26 +91,48 @@ const CarRentalsHome = () => {
                 return (
                     <Row gutter={[12, 12]}>
                         <Col xs={24} sm={12} md={6}>
-                            <Input placeholder="From city" size="large" />
+                            <Flex vertical gap={4}>
+                                <FieldLabel>From</FieldLabel>
+                                <Select
+                                    className="w-full"
+                                    size="large"
+                                    placeholder="Select city"
+                                    options={CITIES}
+                                />
+                            </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={6}>
-                            <Input placeholder="To city" size="large" />
+                            <Flex vertical gap={4}>
+                                <FieldLabel>To</FieldLabel>
+                                <Select
+                                    className="w-full"
+                                    size="large"
+                                    placeholder="Select city"
+                                    options={CITIES}
+                                />
+                            </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={6}>
-                            <DatePicker
-                                className="w-full"
-                                size="large"
-                                placeholder="Departure date"
-                            />
+                            <Flex vertical gap={4}>
+                                <FieldLabel>Departure Date</FieldLabel>
+                                <DatePicker
+                                    className="w-full"
+                                    size="large"
+                                    placeholder="Select date"
+                                />
+                            </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={6}>
-                            <TimePicker
-                                className="w-full"
-                                size="large"
-                                placeholder="Pickup time"
-                                use12Hours
-                                format="h:mm a"
-                            />
+                            <Flex vertical gap={4}>
+                                <FieldLabel>Pickup Time</FieldLabel>
+                                <TimePicker
+                                    className="w-full"
+                                    size="large"
+                                    placeholder="Select time"
+                                    use12Hours
+                                    format="h:mm a"
+                                />
+                            </Flex>
                         </Col>
                     </Row>
                 );
@@ -96,33 +141,58 @@ const CarRentalsHome = () => {
                 return (
                     <Row gutter={[12, 12]}>
                         <Col xs={24} sm={12} md={5}>
-                            <Input placeholder="From city" size="large" />
+                            <Flex vertical gap={4}>
+                                <FieldLabel>From</FieldLabel>
+                                <Select
+                                    className="w-full"
+                                    size="large"
+                                    placeholder="Select city"
+                                    options={CITIES}
+                                />
+                            </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={5}>
-                            <Input placeholder="To city" size="large" />
+                            <Flex vertical gap={4}>
+                                <FieldLabel>To</FieldLabel>
+                                <Select
+                                    className="w-full"
+                                    size="large"
+                                    placeholder="Select city"
+                                    options={CITIES}
+                                />
+                            </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={5}>
-                            <DatePicker
-                                className="w-full"
-                                size="large"
-                                placeholder="Departure date"
-                            />
+                            <Flex vertical gap={4}>
+                                <FieldLabel>Departure Date</FieldLabel>
+                                <DatePicker
+                                    className="w-full"
+                                    size="large"
+                                    placeholder="Select date"
+                                />
+                            </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={5}>
-                            <DatePicker
-                                className="w-full"
-                                size="large"
-                                placeholder="Return date"
-                            />
+                            <Flex vertical gap={4}>
+                                <FieldLabel>Return Date</FieldLabel>
+                                <DatePicker
+                                    className="w-full"
+                                    size="large"
+                                    placeholder="Select date"
+                                />
+                            </Flex>
                         </Col>
                         <Col xs={24} sm={24} md={4}>
-                            <TimePicker
-                                className="w-full"
-                                size="large"
-                                placeholder="Pickup time"
-                                use12Hours
-                                format="h:mm a"
-                            />
+                            <Flex vertical gap={4}>
+                                <FieldLabel>Pickup Time</FieldLabel>
+                                <TimePicker
+                                    className="w-full"
+                                    size="large"
+                                    placeholder="Select time"
+                                    use12Hours
+                                    format="h:mm a"
+                                />
+                            </Flex>
                         </Col>
                     </Row>
                 );
@@ -140,26 +210,43 @@ const CarRentalsHome = () => {
                         </Radio.Group>
                         <Row gutter={[12, 12]}>
                             <Col xs={24} sm={12} md={6}>
-                                <Input placeholder="From city" size="large" />
+                                <Flex vertical gap={4}>
+                                    <FieldLabel>From City</FieldLabel>
+                                    <Select
+                                        className="w-full"
+                                        size="large"
+                                        placeholder="Select city"
+                                        options={CITIES}
+                                    />
+                                </Flex>
                             </Col>
                             <Col xs={24} sm={12} md={6}>
-                                <Input placeholder="Drop airport" size="large" />
+                                <Flex vertical gap={4}>
+                                    <FieldLabel>Airport</FieldLabel>
+                                    <Input placeholder="Drop airport" size="large" />
+                                </Flex>
                             </Col>
                             <Col xs={24} sm={12} md={6}>
-                                <DatePicker
-                                    className="w-full"
-                                    size="large"
-                                    placeholder="Departure date"
-                                />
+                                <Flex vertical gap={4}>
+                                    <FieldLabel>Date</FieldLabel>
+                                    <DatePicker
+                                        className="w-full"
+                                        size="large"
+                                        placeholder="Select date"
+                                    />
+                                </Flex>
                             </Col>
                             <Col xs={24} sm={12} md={6}>
-                                <TimePicker
-                                    className="w-full"
-                                    size="large"
-                                    placeholder="Pickup time"
-                                    use12Hours
-                                    format="h:mm a"
-                                />
+                                <Flex vertical gap={4}>
+                                    <FieldLabel>Pickup Time</FieldLabel>
+                                    <TimePicker
+                                        className="w-full"
+                                        size="large"
+                                        placeholder="Select time"
+                                        use12Hours
+                                        format="h:mm a"
+                                    />
+                                </Flex>
                             </Col>
                         </Row>
                     </Flex>
@@ -169,41 +256,65 @@ const CarRentalsHome = () => {
                 return (
                     <Row gutter={[12, 12]}>
                         <Col xs={24} sm={12} md={5}>
-                            <Input placeholder="Pickup location" size="large" />
+                            <Flex vertical gap={4}>
+                                <FieldLabel>Pickup City</FieldLabel>
+                                <Select
+                                    className="w-full"
+                                    size="large"
+                                    placeholder="Select city"
+                                    options={CITIES}
+                                />
+                            </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={5}>
-                            <DatePicker
-                                className="w-full"
-                                size="large"
-                                placeholder="Departure date"
-                            />
+                            <Flex vertical gap={4}>
+                                <FieldLabel>Date</FieldLabel>
+                                <DatePicker
+                                    className="w-full"
+                                    size="large"
+                                    placeholder="Select date"
+                                />
+                            </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={5}>
-                            <TimePicker
-                                className="w-full"
-                                size="large"
-                                placeholder="Pickup time"
-                                use12Hours
-                                format="h:mm a"
-                            />
+                            <Flex vertical gap={4}>
+                                <FieldLabel>Pickup Time</FieldLabel>
+                                <TimePicker
+                                    className="w-full"
+                                    size="large"
+                                    placeholder="Select time"
+                                    use12Hours
+                                    format="h:mm a"
+                                />
+                            </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={5}>
-                            <Select
-                                className="w-full"
-                                size="large"
-                                placeholder="Duration"
-                                options={durationOptions}
-                            />
+                            <Flex vertical gap={4}>
+                                <FieldLabel>Duration</FieldLabel>
+                                <Select
+                                    className="w-full"
+                                    size="large"
+                                    placeholder="Duration"
+                                    options={durationOptions}
+                                />
+                            </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={4}>
-                            <InputNumber
-                                className="w-full"
-                                size="large"
-                                min={1}
-                                defaultValue={1}
-                                formatter={value => `${value} Day${Number(value) === 1 ? '' : 's'}`}
-                                parser={value => Number(value?.replace(/[^\d]/g, '') || '1')}
-                            />
+                            <Flex vertical gap={4}>
+                                <FieldLabel>Days</FieldLabel>
+                                <InputNumber
+                                    className="w-full"
+                                    size="large"
+                                    min={1}
+                                    defaultValue={1}
+                                    formatter={value =>
+                                        `${value} Day${Number(value) === 1 ? '' : 's'}`
+                                    }
+                                    parser={value =>
+                                        Number(value?.replace(/[^\d]/g, '') || '1')
+                                    }
+                                />
+                            </Flex>
                         </Col>
                     </Row>
                 );
@@ -233,71 +344,181 @@ const CarRentalsHome = () => {
 
                 <Card
                     bordered={false}
-                    style={{ borderRadius: 12 }}
-                    bodyStyle={{ padding: '16px 24px' }}
+                    style={{ borderRadius: 8, boxShadow: CARD_SHADOW }}
+                    bodyStyle={{ padding: 16 }}
                 >
+                    {/* Top-level tabs: Cars / 2 Wheelers */}
                     <Tabs
-                        activeKey={searchTab}
-                        onChange={setSearchTab}
+                        activeKey={mainTab}
+                        onChange={setMainTab}
+                        size="large"
                         items={[
                             {
-                                key: 'cabs',
-                                label: 'Cabs',
+                                key: 'cars',
+                                label: 'Cars',
                                 children: (
-                                    <Flex vertical gap={16}>
-                                        <Radio.Group
-                                            value={cabSubType}
-                                            onChange={e => setCabSubType(e.target.value)}
-                                            size="large"
-                                        >
-                                            <Radio value="one-way" className={radioClass}>
-                                                Outstation One-Way
-                                            </Radio>
-                                            <Radio value="round-trip" className={radioClass}>
-                                                Outstation Round-Trip
-                                            </Radio>
-                                            <Radio value="airport" className={radioClass}>
-                                                Airport Transfer
-                                            </Radio>
-                                            <Radio value="local" className={radioClass}>
-                                                Local/Hourly
-                                            </Radio>
-                                        </Radio.Group>
-                                        {renderCabFields()}
-                                        <Button
-                                            type="primary"
-                                            danger
-                                            block
-                                            size="large"
-                                            onClick={goToResults}
-                                        >
-                                            Search
-                                        </Button>
-                                    </Flex>
+                                    /* Secondary tabs: Cabs / Self Drive */
+                                    <Tabs
+                                        activeKey={searchTab}
+                                        onChange={setSearchTab}
+                                        items={[
+                                            {
+                                                key: 'cabs',
+                                                label: 'Cabs',
+                                                children: (
+                                                    <Flex vertical gap={16}>
+                                                        <Radio.Group
+                                                            value={cabSubType}
+                                                            onChange={e =>
+                                                                setCabSubType(e.target.value)
+                                                            }
+                                                            size="large"
+                                                        >
+                                                            <Radio
+                                                                value="one-way"
+                                                                className={radioClass}
+                                                            >
+                                                                Outstation One-Way
+                                                            </Radio>
+                                                            <Radio
+                                                                value="round-trip"
+                                                                className={radioClass}
+                                                            >
+                                                                Outstation Round-Trip
+                                                            </Radio>
+                                                            <Radio
+                                                                value="airport"
+                                                                className={radioClass}
+                                                            >
+                                                                Airport Transfer
+                                                            </Radio>
+                                                            <Radio
+                                                                value="local"
+                                                                className={radioClass}
+                                                            >
+                                                                Local/Hourly
+                                                            </Radio>
+                                                        </Radio.Group>
+                                                        {renderCabFields()}
+                                                        <Button
+                                                            type="primary"
+                                                            danger
+                                                            block
+                                                            size="large"
+                                                            onClick={goToResults}
+                                                        >
+                                                            Search
+                                                        </Button>
+                                                    </Flex>
+                                                ),
+                                            },
+                                            {
+                                                key: 'self-drive',
+                                                label: 'Self Drive',
+                                                children: (
+                                                    <Flex vertical gap={16}>
+                                                        <Row gutter={[12, 12]}>
+                                                            <Col xs={24} sm={12} md={8}>
+                                                                <Flex vertical gap={4}>
+                                                                    <FieldLabel>
+                                                                        Pickup City
+                                                                    </FieldLabel>
+                                                                    <Select
+                                                                        className="w-full"
+                                                                        size="large"
+                                                                        placeholder="Select city"
+                                                                        options={CITIES}
+                                                                    />
+                                                                </Flex>
+                                                            </Col>
+                                                            <Col xs={24} sm={12} md={8}>
+                                                                <Flex vertical gap={4}>
+                                                                    <FieldLabel>
+                                                                        Pickup Date
+                                                                    </FieldLabel>
+                                                                    <DatePicker
+                                                                        className="w-full"
+                                                                        size="large"
+                                                                        placeholder="Select date"
+                                                                    />
+                                                                </Flex>
+                                                            </Col>
+                                                            <Col xs={24} sm={12} md={8}>
+                                                                <Flex vertical gap={4}>
+                                                                    <FieldLabel>
+                                                                        Return Date
+                                                                    </FieldLabel>
+                                                                    <DatePicker
+                                                                        className="w-full"
+                                                                        size="large"
+                                                                        placeholder="Select date"
+                                                                    />
+                                                                </Flex>
+                                                            </Col>
+                                                        </Row>
+                                                        <Button
+                                                            type="primary"
+                                                            danger
+                                                            block
+                                                            size="large"
+                                                            onClick={goToResults}
+                                                        >
+                                                            Search
+                                                        </Button>
+                                                    </Flex>
+                                                ),
+                                            },
+                                        ]}
+                                    />
                                 ),
                             },
                             {
-                                key: 'self-drive',
-                                label: 'Self Drive',
+                                key: 'two-wheelers',
+                                label: '2 Wheelers',
                                 children: (
                                     <Flex vertical gap={16}>
                                         <Row gutter={[12, 12]}>
-                                            <Col xs={24} sm={12} md={8}>
-                                                <Input placeholder="Pickup city" size="large" />
+                                            <Col xs={24} sm={12} md={6}>
+                                                <Flex vertical gap={4}>
+                                                    <FieldLabel>Vehicle Type</FieldLabel>
+                                                    <Select
+                                                        className="w-full"
+                                                        size="large"
+                                                        placeholder="Select type"
+                                                        options={VEHICLE_TYPES}
+                                                    />
+                                                </Flex>
                                             </Col>
-                                            <Col xs={24} sm={12} md={8}>
-                                                <DatePicker
-                                                    className="w-full"
-                                                    size="large"
-                                                    placeholder="Pickup date"
-                                                />
+                                            <Col xs={24} sm={12} md={6}>
+                                                <Flex vertical gap={4}>
+                                                    <FieldLabel>Pickup City</FieldLabel>
+                                                    <Select
+                                                        className="w-full"
+                                                        size="large"
+                                                        placeholder="Select city"
+                                                        options={CITIES}
+                                                    />
+                                                </Flex>
                                             </Col>
-                                            <Col xs={24} sm={12} md={8}>
-                                                <DatePicker
-                                                    className="w-full"
-                                                    size="large"
-                                                    placeholder="Return date"
-                                                />
+                                            <Col xs={24} sm={12} md={6}>
+                                                <Flex vertical gap={4}>
+                                                    <FieldLabel>Pickup Date</FieldLabel>
+                                                    <DatePicker
+                                                        className="w-full"
+                                                        size="large"
+                                                        placeholder="Select date"
+                                                    />
+                                                </Flex>
+                                            </Col>
+                                            <Col xs={24} sm={12} md={6}>
+                                                <Flex vertical gap={4}>
+                                                    <FieldLabel>Return Date</FieldLabel>
+                                                    <DatePicker
+                                                        className="w-full"
+                                                        size="large"
+                                                        placeholder="Select date"
+                                                    />
+                                                </Flex>
                                             </Col>
                                         </Row>
                                         <Button
@@ -331,7 +552,7 @@ const CarRentalsHome = () => {
                                 style={{
                                     width: 200,
                                     borderRadius: 12,
-                                    boxShadow: '0px 1.94px 19.398px 0px rgba(0, 0, 0, 0.10)',
+                                    boxShadow: CARD_SHADOW,
                                     cursor: 'pointer',
                                 }}
                             >
@@ -382,7 +603,7 @@ const CarRentalsHome = () => {
                                 className="h-full"
                                 style={{
                                     borderRadius: 12,
-                                    boxShadow: '0px 1.94px 19.398px 0px rgba(0, 0, 0, 0.10)',
+                                    boxShadow: CARD_SHADOW,
                                 }}
                             >
                                 <Flex vertical gap={8}>
@@ -424,7 +645,7 @@ const CarRentalsHome = () => {
                                 className="h-full"
                                 style={{
                                     borderRadius: 12,
-                                    boxShadow: '0px 1.94px 19.398px 0px rgba(0, 0, 0, 0.10)',
+                                    boxShadow: CARD_SHADOW,
                                 }}
                             >
                                 <Flex vertical gap={8}>
