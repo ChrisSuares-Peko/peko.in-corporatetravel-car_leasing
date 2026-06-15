@@ -3,7 +3,6 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import ENachMandatePublicSuccess from '@src/domains/dashboard/paymentLinks/pages/ENachMandatePublicSuccess';
 import PaymentLinkPublicSuccess from '@src/domains/dashboard/paymentLinks/pages/PaymentLinkPublicSuccess';
 import PageNotFound from '@src/domains/pages/PageNotFound';
-import { useRootPath } from '@src/hooks/useRootPath';
 import { paths } from '@src/routes/paths';
 
 // eslint-disable-next-line import/no-cycle
@@ -13,11 +12,10 @@ import { dashboardRoutes } from './dashboard';
 import { systemUserRoutes } from './systemUser';
 
 export default function Router() {
-    const rootPath = useRootPath();
     return useRoutes([
         {
             path: '/',
-            element: <Navigate to={rootPath} replace />,
+            element: <Navigate to={paths.dashboard.home} replace />,
         },
 
         // Auth routes
