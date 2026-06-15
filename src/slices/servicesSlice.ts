@@ -34,6 +34,7 @@ const initialState: ApiState = {
             { label: 'Payment Links',         serviceCategory: 'Payment Links',         hasAccess: true, services: [], subServices: [] },
             { label: 'Procure',               serviceCategory: 'Procure',               hasAccess: true, services: [], subServices: [] },
             { label: 'More Services',         serviceCategory: 'More Services',         hasAccess: true, services: [], subServices: [] },
+            { label: 'Car Rentals',           serviceCategory: 'Car Rentals',           hasAccess: true, services: [], subServices: [] },
             { label: 'Reports',               serviceCategory: 'Reports',               hasAccess: true, services: [], subServices: [] },
             { label: 'Need Help',             serviceCategory: 'Need Help',             hasAccess: true, services: [], subServices: [] },
             { label: 'Settings',              serviceCategory: 'Settings',              hasAccess: true, services: [], subServices: [] },

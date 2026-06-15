@@ -102,6 +102,12 @@ export const moreServices = [
         path: `/${paths.dashboard.carLeasing}`,
     },
     {
+        icon: CarLeasing,
+        title: 'Car Rentals',
+        status: 'New',
+        path: `/${paths.dashboard.carRentals}`,
+    },
+    {
         icon: Works,
         title: 'Works',
         status: '',

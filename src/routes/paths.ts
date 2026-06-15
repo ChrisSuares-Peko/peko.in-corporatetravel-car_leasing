@@ -53,6 +53,7 @@ export const paths = {
         tax: '/tax',
         moreServices: '/more-services',
         carLeasing: 'more-services/car-leasing',
+        carRentals: 'more-services/car-rentals',
         comingSoon: '/more-services/coming-soon',
         reports: '/reports',
         needHelp: '/need-help',

@@ -16,6 +16,7 @@ import { billPaymentRoutes } from './billPayments';
 import { bussinessDocsRoutes } from './bussinessDocs';
 import { carbonFootprintRoutes } from './carbonFootprint';
 import { carLeasingRoutes } from './carLeasing';
+import { carRentalsRoutes } from './carRentals';
 import { connectRoutes } from './connect';
 import { corporateTravelRoutes } from './corporateTravel';
 import { domainHostingRoutes } from './domainHosting';
@@ -128,6 +129,10 @@ export const dashboardRoutes = [
             {
                 path: paths.dashboard.carLeasing,
                 children: carLeasingRoutes,
+            },
+            {
+                path: paths.dashboard.carRentals,
+                children: carRentalsRoutes,
             },
             {
                 path: paths.dashboard.works,
