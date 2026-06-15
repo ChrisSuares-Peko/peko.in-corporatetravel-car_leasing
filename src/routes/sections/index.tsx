@@ -15,7 +15,7 @@ export default function Router() {
     return useRoutes([
         {
             path: '/',
-            element: <Navigate to={paths.systemUser.dashboard} replace />,
+            element: <Navigate to={paths.dashboard.home} replace />,
         },
 
         // Auth routes
