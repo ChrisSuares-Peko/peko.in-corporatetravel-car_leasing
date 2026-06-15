@@ -56,6 +56,7 @@ export const paths = {
         carRentals: 'more-services/car-rentals',
         carRentalsResults: 'more-services/car-rentals/results',
         carRentalsCart: 'more-services/car-rentals/cart',
+        carRentalsPayment: 'more-services/car-rentals/payment',
         comingSoon: '/more-services/coming-soon',
         reports: '/reports',
         needHelp: '/need-help',

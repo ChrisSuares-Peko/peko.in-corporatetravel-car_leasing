@@ -2,10 +2,15 @@ import React from 'react';
 
 import { Button, Card, Col, Divider, Flex, Row, Typography } from 'antd';
 import { CarOutlined, DeleteOutlined, HeartOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+
+import { paths } from '@src/routes/paths';
 
 const CARD_SHADOW = '0px 1.94px 19.398px 0px rgba(0, 0, 0, 0.10)';
 
 const CarRentalsCart = () => {
+    const navigate = useNavigate();
+
     return (
         <Flex vertical gap={20}>
             <Typography.Title level={4} className="!mb-0">
@@ -160,7 +165,15 @@ const CarRentalsCart = () => {
                                 </Typography.Text>
                             </Flex>
 
-                            <Button type="primary" danger block size="large">
+                            <Button
+                                type="primary"
+                                danger
+                                block
+                                size="large"
+                                onClick={() =>
+                                    navigate(`/${paths.dashboard.carRentalsPayment}`)
+                                }
+                            >
                                 Proceed to Payment
                             </Button>
                         </Flex>
