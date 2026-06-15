@@ -22,7 +22,7 @@ const initialState: LoginState = {
     refreshToken: '',
     sessionId: '',
     isAuthenticated: true,
-    role: '',
+    role: 'system_user',
     id: 0,
     username: '',
     roleName: '',
