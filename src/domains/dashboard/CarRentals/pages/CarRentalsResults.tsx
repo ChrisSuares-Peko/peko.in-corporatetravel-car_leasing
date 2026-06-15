@@ -33,16 +33,29 @@ import {
 } from '@ant-design/icons';
 
 const results = [
-    { name: 'Maruti Suzuki Ciaz',        bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '28,812', kms: '1296', img: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=200&q=80' },
-    { name: 'Maruti Suzuki Ertiga',       bags: 4, seats: 7, bodyType: 'MUV',       airbags: 4, price: '31,404', kms: '1296', img: 'https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=200&q=80' },
-    { name: 'Maruti Suzuki Celerio',      bags: 3, seats: 5, bodyType: 'Hatchback', airbags: 2, price: '31,604', kms: '1296', img: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=200&q=80' },
-    { name: 'Maruti Suzuki Wagon R',      bags: 3, seats: 5, bodyType: 'Hatchback', airbags: 2, price: '31,604', kms: '1296', img: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=200&q=80' },
-    { name: 'Maruti Suzuki Swift Dzire',  bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,696', kms: '1296', img: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=200&q=80' },
-    { name: 'Hyundai Aura',               bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,946', kms: '1296', img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=200&q=80' },
-    { name: 'Maruti Suzuki Dzire',        bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 6, price: '33,946', kms: '1296', img: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=200&q=80' },
-    { name: 'Toyota Etios',               bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,946', kms: '1296', img: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=200&q=80' },
-    { name: 'Honda Amaze',                bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 6, price: '33,996', kms: '1296', img: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=200&q=80' },
-    { name: 'Hyundai Xcent',              bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,996', kms: '1296', img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=200&q=80' },
+    { name: 'Maruti Suzuki Ciaz',       bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '28,812', kms: '1296', img: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=160&q=80' },
+    { name: 'Maruti Suzuki Ertiga',      bags: 4, seats: 7, bodyType: 'MUV',       airbags: 4, price: '31,404', kms: '1296', img: 'https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=160&q=80' },
+    { name: 'Maruti Suzuki Celerio',     bags: 3, seats: 5, bodyType: 'Hatchback', airbags: 2, price: '31,604', kms: '1296', img: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=160&q=80' },
+    { name: 'Maruti Suzuki Wagon R',     bags: 3, seats: 5, bodyType: 'Hatchback', airbags: 2, price: '31,604', kms: '1296', img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=160&q=80' },
+    { name: 'Maruti Suzuki Swift Dzire', bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,696', kms: '1296', img: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=160&q=80' },
+    { name: 'Hyundai Aura',              bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,946', kms: '1296', img: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=160&q=80' },
+    { name: 'Maruti Suzuki Dzire',       bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 6, price: '33,946', kms: '1296', img: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=160&q=80' },
+    { name: 'Toyota Etios',              bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,946', kms: '1296', img: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=160&q=80' },
+    { name: 'Honda Amaze',               bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 6, price: '33,996', kms: '1296', img: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=160&q=80' },
+    { name: 'Hyundai Xcent',             bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,996', kms: '1296', img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=160&q=80' },
+];
+
+const MAKES_AND_MODELS = [
+    { name: 'Maruti Suzuki', models: ['Dzire', 'Ciaz', 'Ertiga', 'Celerio', 'Wagon R', 'Swift', 'Baleno'] },
+    { name: 'Hyundai',       models: ['Aura', 'Xcent', 'i20', 'Verna', 'Creta'] },
+    { name: 'Honda',         models: ['Amaze', 'City', 'WR-V'] },
+    { name: 'Tata',          models: ['Tigor', 'Nexon', 'Harrier'] },
+    { name: 'Toyota',        models: ['Etios', 'Innova', 'Fortuner'] },
+    { name: 'Kia',           models: ['Sonet', 'Seltos', 'Carens'] },
+    { name: 'BMW',           models: ['3 Series', '5 Series', '7 Series', 'X5'] },
+    { name: 'Mercedes-Benz', models: ['E-Class', 'S-Class', 'GLS', 'GLE'] },
+    { name: 'Audi',          models: ['A4', 'A6', 'Q5', 'Q7'] },
+    { name: 'Jaguar',        models: ['XE', 'XF', 'F-Pace'] },
 ];
 
 const partPayAmount = (price: string): string => {
@@ -51,9 +64,16 @@ const partPayAmount = (price: string): string => {
 };
 
 const CarRentalsResults = () => {
-    const [rentalType, setRentalType] = useState('daily');
-    const [bookingType, setBookingType] = useState('one-way');
-    const [priceRange, setPriceRange] = useState<[number, number]>([28812, 1076976]);
+    const selectedFrom = 'Mumbai';
+    const selectedTo = 'Agra';
+
+    const [rentalTypes, setRentalTypes] = useState<string[]>([]);
+    const [bookingTypes, setBookingTypes] = useState<string[]>([]);
+    const [priceRange, setPriceRange] = useState<[number, number]>([5000, 1076976]);
+    const [selectedModels, setSelectedModels] = useState<Record<string, string[]>>({});
+    const [bodyTypes, setBodyTypes] = useState<string[]>([]);
+    const [fuelTypes, setFuelTypes] = useState<string[]>([]);
+    const [transmissionTypes, setTransmissionTypes] = useState<string[]>([]);
     const [segments, setSegments] = useState<string[]>(['all', 'value', 'mid', 'premium', 'luxury']);
     const [expandedCard, setExpandedCard] = useState<number | null>(null);
     const [paymentOption, setPaymentOption] = useState<'part' | 'full'>('part');
@@ -74,48 +94,32 @@ const CarRentalsResults = () => {
             key: 'rental-type',
             label: <Typography.Text strong>Rental Type</Typography.Text>,
             children: (
-                <Radio.Group value={rentalType} onChange={e => setRentalType(e.target.value)}>
+                <Checkbox.Group
+                    value={rentalTypes}
+                    onChange={v => setRentalTypes(v as string[])}
+                >
                     <Space direction="vertical" className="w-full">
-                        <Flex justify="space-between">
-                            <Radio value="daily">Daily Rental</Radio>
-                            <Typography.Text className="text-textGreyLight text-xs">86</Typography.Text>
-                        </Flex>
-                        <Flex justify="space-between">
-                            <Radio value="wedding">Wedding/Vintage</Radio>
-                            <Typography.Text className="text-textGreyLight text-xs">36</Typography.Text>
-                        </Flex>
-                        <Flex justify="space-between">
-                            <Radio value="self-drive">Self Drive</Radio>
-                            <Typography.Text className="text-textGreyLight text-xs">38</Typography.Text>
-                        </Flex>
+                        <Checkbox value="daily">Daily Rental</Checkbox>
+                        <Checkbox value="self-drive">Self Drive</Checkbox>
                     </Space>
-                </Radio.Group>
+                </Checkbox.Group>
             ),
         },
         {
             key: 'booking-type',
             label: <Typography.Text strong>Booking Type</Typography.Text>,
             children: (
-                <Radio.Group value={bookingType} onChange={e => setBookingType(e.target.value)}>
+                <Checkbox.Group
+                    value={bookingTypes}
+                    onChange={v => setBookingTypes(v as string[])}
+                >
                     <Space direction="vertical" className="w-full">
-                        <Flex justify="space-between">
-                            <Radio value="one-way">Outstation One-Way</Radio>
-                            <Typography.Text className="text-textGreyLight text-xs">74</Typography.Text>
-                        </Flex>
-                        <Flex justify="space-between">
-                            <Radio value="round-trip">Outstation Round-Trip</Radio>
-                            <Typography.Text className="text-textGreyLight text-xs">74</Typography.Text>
-                        </Flex>
-                        <Flex justify="space-between">
-                            <Radio value="airport">Airport Transfer</Radio>
-                            <Typography.Text className="text-textGreyLight text-xs">58</Typography.Text>
-                        </Flex>
-                        <Flex justify="space-between">
-                            <Radio value="local">Local/Hourly Rental</Radio>
-                            <Typography.Text className="text-textGreyLight text-xs">82</Typography.Text>
-                        </Flex>
+                        <Checkbox value="one-way">Outstation One-Way</Checkbox>
+                        <Checkbox value="round-trip">Outstation Round-Trip</Checkbox>
+                        <Checkbox value="airport">Airport Transfer</Checkbox>
+                        <Checkbox value="local">Local/Hourly Rental</Checkbox>
                     </Space>
-                </Radio.Group>
+                </Checkbox.Group>
             ),
         },
         {
@@ -143,7 +147,7 @@ const CarRentalsResults = () => {
                     </Flex>
                     <Slider
                         range
-                        min={28812}
+                        min={5000}
                         max={1076976}
                         value={priceRange}
                         onChange={values => setPriceRange(values as [number, number])}
@@ -154,22 +158,93 @@ const CarRentalsResults = () => {
         {
             key: 'make-model',
             label: <Typography.Text strong>Make and Model</Typography.Text>,
-            children: <div />,
+            children: (
+                <Collapse
+                    ghost
+                    size="small"
+                    items={MAKES_AND_MODELS.map(brand => ({
+                        key: brand.name,
+                        label: (
+                            <Typography.Text className="text-sm">{brand.name}</Typography.Text>
+                        ),
+                        children: (
+                            <Checkbox.Group
+                                value={selectedModels[brand.name] ?? []}
+                                onChange={vals =>
+                                    setSelectedModels(prev => ({
+                                        ...prev,
+                                        [brand.name]: vals as string[],
+                                    }))
+                                }
+                            >
+                                <Space direction="vertical" style={{ paddingLeft: 8 }}>
+                                    {brand.models.map(model => (
+                                        <Checkbox key={model} value={model}>
+                                            <Typography.Text className="text-sm">
+                                                {model}
+                                            </Typography.Text>
+                                        </Checkbox>
+                                    ))}
+                                </Space>
+                            </Checkbox.Group>
+                        ),
+                    }))}
+                />
+            ),
         },
         {
             key: 'body-type',
             label: <Typography.Text strong>Body Type</Typography.Text>,
-            children: <div />,
+            children: (
+                <Checkbox.Group
+                    value={bodyTypes}
+                    onChange={v => setBodyTypes(v as string[])}
+                >
+                    <Space direction="vertical" className="w-full">
+                        <Checkbox value="sedan">Sedan</Checkbox>
+                        <Checkbox value="hatchback">Hatchback</Checkbox>
+                        <Checkbox value="suv">SUV</Checkbox>
+                        <Checkbox value="muv">MUV</Checkbox>
+                        <Checkbox value="luxury-sedan">Luxury Sedan</Checkbox>
+                        <Checkbox value="convertible">Convertible</Checkbox>
+                        <Checkbox value="coupe">Coupe</Checkbox>
+                    </Space>
+                </Checkbox.Group>
+            ),
         },
         {
             key: 'fuel-type',
             label: <Typography.Text strong>Fuel Type</Typography.Text>,
-            children: <div />,
+            children: (
+                <Checkbox.Group
+                    value={fuelTypes}
+                    onChange={v => setFuelTypes(v as string[])}
+                >
+                    <Space direction="vertical" className="w-full">
+                        <Checkbox value="petrol">Petrol</Checkbox>
+                        <Checkbox value="diesel">Diesel</Checkbox>
+                        <Checkbox value="cng">CNG</Checkbox>
+                        <Checkbox value="electric">Electric</Checkbox>
+                        <Checkbox value="hybrid">Hybrid</Checkbox>
+                    </Space>
+                </Checkbox.Group>
+            ),
         },
         {
             key: 'transmission',
             label: <Typography.Text strong>Transmission Type</Typography.Text>,
-            children: <div />,
+            children: (
+                <Checkbox.Group
+                    value={transmissionTypes}
+                    onChange={v => setTransmissionTypes(v as string[])}
+                >
+                    <Space direction="vertical" className="w-full">
+                        <Checkbox value="manual">Manual</Checkbox>
+                        <Checkbox value="automatic">Automatic</Checkbox>
+                        <Checkbox value="amt">AMT</Checkbox>
+                    </Space>
+                </Checkbox.Group>
+            ),
         },
     ];
 
@@ -191,7 +266,7 @@ const CarRentalsResults = () => {
                     <Collapse
                         expandIconPosition="end"
                         className="w-full border-none"
-                        defaultActiveKey={['rental-type', 'booking-type', 'price-range']}
+                        defaultActiveKey={['rental-type']}
                         items={filterPanels}
                     />
                 </Card>
@@ -204,9 +279,9 @@ const CarRentalsResults = () => {
                     <Card bodyStyle={{ padding: '12px 16px' }} className="rounded-xl">
                         <Flex justify="space-between" align="center" gap={8}>
                             <Flex gap={6} align="center" wrap="wrap">
-                                <Typography.Text strong>Mumbai</Typography.Text>
+                                <Typography.Text strong>{selectedFrom}</Typography.Text>
                                 <Typography.Text className="text-textGreyLight">→</Typography.Text>
-                                <Typography.Text strong>Agra</Typography.Text>
+                                <Typography.Text strong>{selectedTo}</Typography.Text>
                                 <Divider type="vertical" />
                                 <Typography.Text>15 Jun'26</Typography.Text>
                                 <Divider type="vertical" />
@@ -262,7 +337,7 @@ const CarRentalsResults = () => {
                                                 width: 120,
                                                 height: 80,
                                                 objectFit: 'cover',
-                                                borderRadius: 8,
+                                                borderRadius: 4,
                                                 display: 'block',
                                             }}
                                         />
@@ -410,7 +485,7 @@ const CarRentalsResults = () => {
                                                                         Pickup Location
                                                                     </Typography.Text>
                                                                     <Typography.Text className="text-sm">
-                                                                        Mumbai
+                                                                        {selectedFrom}
                                                                     </Typography.Text>
                                                                 </Flex>
                                                             </Flex>
@@ -425,7 +500,7 @@ const CarRentalsResults = () => {
                                                                         Drop Location
                                                                     </Typography.Text>
                                                                     <Typography.Text className="text-sm">
-                                                                        Agra
+                                                                        {selectedTo}
                                                                     </Typography.Text>
                                                                 </Flex>
                                                             </Flex>
@@ -531,13 +606,6 @@ const CarRentalsResults = () => {
                                                             ? partPayAmount(car.price)
                                                             : car.price}
                                                     </Button>
-
-                                                    {/* See More Details */}
-                                                    <Flex justify="center">
-                                                        <Typography.Link type="danger">
-                                                            See More Details
-                                                        </Typography.Link>
-                                                    </Flex>
                                                 </Flex>
                                             </Col>
                                         </Row>
