@@ -81,9 +81,44 @@ const CarRentalsHome = () => {
     const [tierTab, setTierTab] = useState('budget');
     const [luxuryTab, setLuxuryTab] = useState('daily');
 
+    // Search field selections — passed as query params to Results
+    const [fromCity, setFromCity] = useState<string | undefined>(undefined);
+    const [toCity, setToCity] = useState<string | undefined>(undefined);
+    const [selfDriveCity, setSelfDriveCity] = useState<string | undefined>(undefined);
+    const [twoWheelerCity, setTwoWheelerCity] = useState<string | undefined>(undefined);
+    const [twoWheelerVehicle, setTwoWheelerVehicle] = useState<string | undefined>(undefined);
+
     const navigate = useNavigate();
     const radioClass = 'xs:text-xs md:text-sm md:font-semibold mt-1 me-4';
-    const goToResults = () => navigate(`/${paths.dashboard.carRentalsResults}`);
+
+    const goToResults = () => {
+        const params = new URLSearchParams();
+        if (mainTab === 'two-wheelers') {
+            params.set('rentalType', '2wheelers');
+            if (twoWheelerVehicle) {
+                params.set('vehicleType', twoWheelerVehicle === 'bike' ? 'bikes' : 'scooters');
+            }
+            if (twoWheelerCity) params.set('fromCity', twoWheelerCity);
+        } else if (searchTab === 'self-drive') {
+            params.set('rentalType', 'selfDrive');
+            if (selfDriveCity) params.set('fromCity', selfDriveCity);
+        } else {
+            // Cabs
+            params.set('rentalType', 'cabs');
+            const bookingTypeMap: Record<string, string> = {
+                'one-way':    'outstationOneWay',
+                'round-trip': 'outstationRoundTrip',
+                'airport':    'airportTransfer',
+                'local':      'localHourly',
+            };
+            params.set('bookingType', bookingTypeMap[cabSubType]);
+            if (fromCity) params.set('fromCity', fromCity);
+            if (toCity && (cabSubType === 'one-way' || cabSubType === 'round-trip')) {
+                params.set('toCity', toCity);
+            }
+        }
+        navigate(`/${paths.dashboard.carRentalsResults}?${params.toString()}`);
+    };
 
     const renderCabFields = () => {
         switch (cabSubType) {
@@ -98,6 +133,8 @@ const CarRentalsHome = () => {
                                     size="large"
                                     placeholder="Select city"
                                     options={CITIES}
+                                    value={fromCity}
+                                    onChange={setFromCity}
                                 />
                             </Flex>
                         </Col>
@@ -109,6 +146,8 @@ const CarRentalsHome = () => {
                                     size="large"
                                     placeholder="Select city"
                                     options={CITIES}
+                                    value={toCity}
+                                    onChange={setToCity}
                                 />
                             </Flex>
                         </Col>
@@ -148,6 +187,8 @@ const CarRentalsHome = () => {
                                     size="large"
                                     placeholder="Select city"
                                     options={CITIES}
+                                    value={fromCity}
+                                    onChange={setFromCity}
                                 />
                             </Flex>
                         </Col>
@@ -159,6 +200,8 @@ const CarRentalsHome = () => {
                                     size="large"
                                     placeholder="Select city"
                                     options={CITIES}
+                                    value={toCity}
+                                    onChange={setToCity}
                                 />
                             </Flex>
                         </Col>
@@ -217,6 +260,8 @@ const CarRentalsHome = () => {
                                         size="large"
                                         placeholder="Select city"
                                         options={CITIES}
+                                        value={fromCity}
+                                        onChange={setFromCity}
                                     />
                                 </Flex>
                             </Col>
@@ -263,6 +308,8 @@ const CarRentalsHome = () => {
                                     size="large"
                                     placeholder="Select city"
                                     options={CITIES}
+                                    value={fromCity}
+                                    onChange={setFromCity}
                                 />
                             </Flex>
                         </Col>
@@ -432,6 +479,8 @@ const CarRentalsHome = () => {
                                                                         size="large"
                                                                         placeholder="Select city"
                                                                         options={CITIES}
+                                                                        value={selfDriveCity}
+                                                                        onChange={setSelfDriveCity}
                                                                     />
                                                                 </Flex>
                                                             </Col>
@@ -490,6 +539,8 @@ const CarRentalsHome = () => {
                                                         size="large"
                                                         placeholder="Select type"
                                                         options={VEHICLE_TYPES}
+                                                        value={twoWheelerVehicle}
+                                                        onChange={setTwoWheelerVehicle}
                                                     />
                                                 </Flex>
                                             </Col>
@@ -501,6 +552,8 @@ const CarRentalsHome = () => {
                                                         size="large"
                                                         placeholder="Select city"
                                                         options={CITIES}
+                                                        value={twoWheelerCity}
+                                                        onChange={setTwoWheelerCity}
                                                     />
                                                 </Flex>
                                             </Col>

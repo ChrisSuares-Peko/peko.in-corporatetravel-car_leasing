@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { paths } from '@src/routes/paths';
 
@@ -101,18 +101,46 @@ const partPayAmount = (price: string): string => {
     return Math.round(num * 0.35).toLocaleString('en-IN');
 };
 
+// bookingType URL param → filter checkbox value
+const BOOKING_TYPE_MAP: Record<string, string> = {
+    outstationOneWay:   'one-way',
+    outstationRoundTrip:'round-trip',
+    airportTransfer:    'airport',
+    localHourly:        'local',
+};
+
 // ─── Component ───────────────────────────────────────────────────────────────
 
 const CarRentalsResults = () => {
-    const selectedFrom = 'Mumbai';
-    const selectedTo = 'Agra';
+    const location = useLocation();
 
-    // Primary mode toggles
-    const [rentalType, setRentalType] = useState<'daily' | 'selfDrive'>('daily');
-    const [vehicleType, setVehicleType] = useState<'cars' | 'bikes' | 'scooters'>('cars');
+    // City labels shown in the summary strip — read once from URL on mount
+    const [selectedFrom] = useState<string>(
+        () => new URLSearchParams(location.search).get('fromCity') || ''
+    );
+    const [selectedTo] = useState<string>(
+        () => new URLSearchParams(location.search).get('toCity') || ''
+    );
 
-    // Filter state
-    const [bookingTypes, setBookingTypes] = useState<string[]>([]);
+    // Primary mode toggles — initialized from URL params
+    const [rentalType, setRentalType] = useState<'daily' | 'selfDrive'>(() => {
+        const rt = new URLSearchParams(location.search).get('rentalType');
+        return rt === 'selfDrive' || rt === '2wheelers' ? 'selfDrive' : 'daily';
+    });
+
+    const [vehicleType, setVehicleType] = useState<'cars' | 'bikes' | 'scooters'>(() => {
+        const vt = new URLSearchParams(location.search).get('vehicleType');
+        if (vt === 'bikes') return 'bikes';
+        if (vt === 'scooters') return 'scooters';
+        return 'cars';
+    });
+
+    // Filter state — bookingTypes pre-selected from URL param
+    const [bookingTypes, setBookingTypes] = useState<string[]>(() => {
+        const bt = new URLSearchParams(location.search).get('bookingType');
+        return bt && BOOKING_TYPE_MAP[bt] ? [BOOKING_TYPE_MAP[bt]] : [];
+    });
+
     const [priceRange, setPriceRange] = useState<[number, number]>([5000, 1076976]);
     const [selectedModels, setSelectedModels] = useState<Record<string, string[]>>({});
     const [bodyTypes, setBodyTypes] = useState<string[]>([]);
@@ -408,9 +436,17 @@ const CarRentalsResults = () => {
                     <Card bodyStyle={{ padding: '12px 16px' }} className="rounded-xl">
                         <Flex justify="space-between" align="center" gap={8}>
                             <Flex gap={6} align="center" wrap="wrap">
-                                <Typography.Text strong>{selectedFrom}</Typography.Text>
-                                <Typography.Text className="text-textGreyLight">→</Typography.Text>
-                                <Typography.Text strong>{selectedTo}</Typography.Text>
+                                <Typography.Text strong>
+                                    {selectedFrom || 'Origin'}
+                                </Typography.Text>
+                                {selectedTo && (
+                                    <>
+                                        <Typography.Text className="text-textGreyLight">
+                                            →
+                                        </Typography.Text>
+                                        <Typography.Text strong>{selectedTo}</Typography.Text>
+                                    </>
+                                )}
                                 <Divider type="vertical" />
                                 <Typography.Text>15 Jun'26</Typography.Text>
                                 <Divider type="vertical" />
@@ -618,7 +654,7 @@ const CarRentalsResults = () => {
                                                                         Pickup Location
                                                                     </Typography.Text>
                                                                     <Typography.Text className="text-sm">
-                                                                        {selectedFrom}
+                                                                        {selectedFrom || '–'}
                                                                     </Typography.Text>
                                                                 </Flex>
                                                             </Flex>
@@ -633,7 +669,7 @@ const CarRentalsResults = () => {
                                                                         Drop Location
                                                                     </Typography.Text>
                                                                     <Typography.Text className="text-sm">
-                                                                        {selectedTo}
+                                                                        {selectedTo || '–'}
                                                                     </Typography.Text>
                                                                 </Flex>
                                                             </Flex>
