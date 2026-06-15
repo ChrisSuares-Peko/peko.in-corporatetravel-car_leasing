@@ -77,20 +77,19 @@ const CarRentalsCart = () => {
 
                         {/* Car item row */}
                         <Row gutter={[16, 12]} align="middle">
-                            {/* Image placeholder */}
+                            {/* Car image */}
                             <Col xs={24} sm={3}>
-                                <Flex
-                                    align="center"
-                                    justify="center"
+                                <img
+                                    src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=200&q=80"
+                                    alt="Maruti Suzuki Ciaz Sigma"
                                     style={{
                                         width: 80,
                                         height: 60,
-                                        background: '#f5f5f5',
+                                        objectFit: 'cover',
                                         borderRadius: 6,
+                                        display: 'block',
                                     }}
-                                >
-                                    <CarOutlined style={{ fontSize: 24, color: '#d9d9d9' }} />
-                                </Flex>
+                                />
                             </Col>
 
                             {/* Car name + type */}

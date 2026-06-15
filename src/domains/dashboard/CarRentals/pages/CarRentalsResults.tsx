@@ -33,16 +33,16 @@ import {
 } from '@ant-design/icons';
 
 const results = [
-    { name: 'Maruti Suzuki Ciaz',        bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '28,812', kms: '1296' },
-    { name: 'Maruti Suzuki Ertiga',       bags: 4, seats: 7, bodyType: 'MUV',       airbags: 4, price: '31,404', kms: '1296' },
-    { name: 'Maruti Suzuki Celerio',      bags: 3, seats: 5, bodyType: 'Hatchback', airbags: 2, price: '31,604', kms: '1296' },
-    { name: 'Maruti Suzuki Wagon R',      bags: 3, seats: 5, bodyType: 'Hatchback', airbags: 2, price: '31,604', kms: '1296' },
-    { name: 'Maruti Suzuki Swift Dzire',  bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,696', kms: '1296' },
-    { name: 'Hyundai Aura',               bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,946', kms: '1296' },
-    { name: 'Maruti Suzuki Dzire',        bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 6, price: '33,946', kms: '1296' },
-    { name: 'Toyota Etios',               bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,946', kms: '1296' },
-    { name: 'Honda Amaze',                bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 6, price: '33,996', kms: '1296' },
-    { name: 'Hyundai Xcent',              bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,996', kms: '1296' },
+    { name: 'Maruti Suzuki Ciaz',        bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '28,812', kms: '1296', img: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=200&q=80' },
+    { name: 'Maruti Suzuki Ertiga',       bags: 4, seats: 7, bodyType: 'MUV',       airbags: 4, price: '31,404', kms: '1296', img: 'https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=200&q=80' },
+    { name: 'Maruti Suzuki Celerio',      bags: 3, seats: 5, bodyType: 'Hatchback', airbags: 2, price: '31,604', kms: '1296', img: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=200&q=80' },
+    { name: 'Maruti Suzuki Wagon R',      bags: 3, seats: 5, bodyType: 'Hatchback', airbags: 2, price: '31,604', kms: '1296', img: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=200&q=80' },
+    { name: 'Maruti Suzuki Swift Dzire',  bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,696', kms: '1296', img: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=200&q=80' },
+    { name: 'Hyundai Aura',               bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,946', kms: '1296', img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=200&q=80' },
+    { name: 'Maruti Suzuki Dzire',        bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 6, price: '33,946', kms: '1296', img: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=200&q=80' },
+    { name: 'Toyota Etios',               bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,946', kms: '1296', img: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=200&q=80' },
+    { name: 'Honda Amaze',                bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 6, price: '33,996', kms: '1296', img: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=200&q=80' },
+    { name: 'Hyundai Xcent',              bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,996', kms: '1296', img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=200&q=80' },
 ];
 
 const partPayAmount = (price: string): string => {
@@ -253,20 +253,19 @@ const CarRentalsResults = () => {
                             >
                                 {/* Summary row */}
                                 <Row gutter={[16, 16]} align="middle">
-                                    {/* Image placeholder */}
+                                    {/* Car image */}
                                     <Col xs={24} sm={4}>
-                                        <Flex
-                                            align="center"
-                                            justify="center"
+                                        <img
+                                            src={car.img}
+                                            alt={car.name}
                                             style={{
                                                 width: 120,
                                                 height: 80,
-                                                background: '#f5f5f5',
+                                                objectFit: 'cover',
                                                 borderRadius: 8,
+                                                display: 'block',
                                             }}
-                                        >
-                                            <CarOutlined style={{ fontSize: 32, color: '#d9d9d9' }} />
-                                        </Flex>
+                                        />
                                     </Col>
 
                                     {/* Car details */}
@@ -340,21 +339,18 @@ const CarRentalsResults = () => {
                                             {/* Left: image + highlight strip + tip */}
                                             <Col xs={24} md={12}>
                                                 <Flex vertical gap={12}>
-                                                    {/* Large image placeholder */}
-                                                    <Flex
-                                                        align="center"
-                                                        justify="center"
+                                                    {/* Large car image */}
+                                                    <img
+                                                        src={car.img}
+                                                        alt={car.name}
                                                         style={{
                                                             width: '100%',
                                                             height: 280,
-                                                            background: '#f5f5f5',
+                                                            objectFit: 'cover',
                                                             borderRadius: 8,
+                                                            display: 'block',
                                                         }}
-                                                    >
-                                                        <CarOutlined
-                                                            style={{ fontSize: 64, color: '#d9d9d9' }}
-                                                        />
-                                                    </Flex>
+                                                    />
 
                                                     {/* Highlight strip */}
                                                     <Flex

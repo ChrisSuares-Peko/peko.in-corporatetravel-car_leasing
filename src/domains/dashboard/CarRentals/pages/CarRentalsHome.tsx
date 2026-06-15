@@ -36,28 +36,28 @@ const VEHICLE_TYPES = [
 ];
 
 const popularRoutes = [
-    { route: 'Mumbai to Pune', price: '₹3,960' },
-    { route: 'Bangalore to Mysore', price: '₹3,960' },
-    { route: 'Delhi to Agra', price: '₹4,200' },
-    { route: 'Chennai to Bangalore', price: '₹5,500' },
-    { route: 'Hyderabad to Vijayawada', price: '₹3,200' },
-    { route: 'Delhi to Jaipur', price: '₹4,800' },
+    { route: 'Mumbai to Pune',          price: '₹3,960', img: 'https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?w=80&q=80' },
+    { route: 'Bangalore to Mysore',     price: '₹3,960', img: 'https://images.unsplash.com/photo-1580889240428-a8ed8b5a4b43?w=80&q=80' },
+    { route: 'Delhi to Agra',           price: '₹4,200', img: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=80&q=80' },
+    { route: 'Chennai to Bangalore',    price: '₹5,500', img: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=80&q=80' },
+    { route: 'Hyderabad to Vijayawada', price: '₹3,200', img: 'https://images.unsplash.com/photo-1600100397608-658dcab04e61?w=80&q=80' },
+    { route: 'Delhi to Jaipur',         price: '₹4,800', img: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?w=80&q=80' },
 ];
 
 const budgetCars = [
-    { name: 'Maruti Suzuki Dzire', price: '₹3,200' },
-    { name: 'Kia Sonet', price: '₹3,500' },
-    { name: 'Honda Amaze', price: '₹3,200' },
-    { name: 'Hyundai Aura', price: '₹3,100' },
-    { name: 'Tata Tigor', price: '₹2,900' },
+    { name: 'Maruti Suzuki Dzire', price: '₹3,200', img: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=200&q=80' },
+    { name: 'Kia Sonet',           price: '₹3,500', img: 'https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=200&q=80' },
+    { name: 'Honda Amaze',         price: '₹3,200', img: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=200&q=80' },
+    { name: 'Hyundai Aura',        price: '₹3,100', img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=200&q=80' },
+    { name: 'Tata Tigor',          price: '₹2,900', img: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=200&q=80' },
 ];
 
 const luxuryCars = [
-    { name: 'BMW 5 Series', price: '₹18,400' },
-    { name: 'Mercedes-Benz E-Class', price: '₹18,700' },
-    { name: 'Mercedes-Benz GLS', price: '₹23,500' },
-    { name: 'Audi A6', price: '₹17,200' },
-    { name: 'Jaguar XF', price: '₹22,500' },
+    { name: 'BMW 5 Series',          price: '₹18,400', img: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=200&q=80' },
+    { name: 'Mercedes-Benz E-Class', price: '₹18,700', img: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=200&q=80' },
+    { name: 'Mercedes-Benz GLS',     price: '₹23,500', img: 'https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=200&q=80' },
+    { name: 'Audi A6',               price: '₹17,200', img: 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=200&q=80' },
+    { name: 'Jaguar XF',             price: '₹22,500', img: 'https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?w=200&q=80' },
 ];
 
 const durationOptions = [
@@ -331,7 +331,11 @@ const CarRentalsHome = () => {
                 vertical
                 gap={24}
                 className="rounded-2xl p-8"
-                style={{ background: '#171717' }}
+                style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1485291571150-772bcfc10da5?w=1600&q=80')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}
             >
                 <Flex vertical gap={4}>
                     <Typography.Title level={4} style={{ color: '#fff', margin: 0 }}>
@@ -550,19 +554,32 @@ const CarRentalsHome = () => {
                                 key={i}
                                 bordered={false}
                                 style={{
-                                    width: 200,
+                                    width: 240,
                                     borderRadius: 12,
                                     boxShadow: CARD_SHADOW,
                                     cursor: 'pointer',
                                 }}
                             >
-                                <Flex vertical gap={6}>
-                                    <Typography.Text strong className="text-sm">
-                                        {item.route}
-                                    </Typography.Text>
-                                    <Typography.Text className="text-textGreyLight text-xs">
-                                        Starts from {item.price}
-                                    </Typography.Text>
+                                <Flex gap={10} align="center">
+                                    <img
+                                        src={item.img}
+                                        alt={item.route}
+                                        style={{
+                                            width: 36,
+                                            height: 36,
+                                            borderRadius: '50%',
+                                            objectFit: 'cover',
+                                            flexShrink: 0,
+                                        }}
+                                    />
+                                    <Flex vertical gap={4}>
+                                        <Typography.Text strong className="text-sm">
+                                            {item.route}
+                                        </Typography.Text>
+                                        <Typography.Text className="text-textGreyLight text-xs">
+                                            Starts from {item.price}
+                                        </Typography.Text>
+                                    </Flex>
                                 </Flex>
                             </Card>
                         ))}
@@ -607,6 +624,17 @@ const CarRentalsHome = () => {
                                 }}
                             >
                                 <Flex vertical gap={8}>
+                                    <img
+                                        src={car.img}
+                                        alt={car.name}
+                                        style={{
+                                            width: '100%',
+                                            height: 120,
+                                            objectFit: 'cover',
+                                            borderRadius: 6,
+                                            display: 'block',
+                                        }}
+                                    />
                                     <Typography.Text strong className="text-sm">
                                         {car.name}
                                     </Typography.Text>
@@ -649,6 +677,17 @@ const CarRentalsHome = () => {
                                 }}
                             >
                                 <Flex vertical gap={8}>
+                                    <img
+                                        src={car.img}
+                                        alt={car.name}
+                                        style={{
+                                            width: '100%',
+                                            height: 120,
+                                            objectFit: 'cover',
+                                            borderRadius: 6,
+                                            display: 'block',
+                                        }}
+                                    />
                                     <Typography.Text strong className="text-sm">
                                         {car.name}
                                     </Typography.Text>
