@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
+import { paths } from '@src/routes/paths';
+
 import {
     Button,
     Card,
@@ -53,6 +57,8 @@ const CarRentalsResults = () => {
     const [segments, setSegments] = useState<string[]>(['all', 'value', 'mid', 'premium', 'luxury']);
     const [expandedCard, setExpandedCard] = useState<number | null>(null);
     const [paymentOption, setPaymentOption] = useState<'part' | 'full'>('part');
+
+    const navigate = useNavigate();
 
     const toggleCard = (i: number) => {
         if (expandedCard === i) {
@@ -518,6 +524,11 @@ const CarRentalsResults = () => {
                                                         danger
                                                         block
                                                         size="large"
+                                                        onClick={() =>
+                                                            navigate(
+                                                                `/${paths.dashboard.carRentalsCart}`
+                                                            )
+                                                        }
                                                     >
                                                         Book Now @ ₹
                                                         {paymentOption === 'part'

@@ -55,6 +55,7 @@ export const paths = {
         carLeasing: 'more-services/car-leasing',
         carRentals: 'more-services/car-rentals',
         carRentalsResults: 'more-services/car-rentals/results',
+        carRentalsCart: 'more-services/car-rentals/cart',
         comingSoon: '/more-services/coming-soon',
         reports: '/reports',
         needHelp: '/need-help',
