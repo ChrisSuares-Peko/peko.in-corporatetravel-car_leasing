@@ -53,11 +53,11 @@ const budgetCars = [
 ];
 
 const luxuryCars = [
-    { name: 'BMW 5 Series',          price: '₹18,400', img: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=200&q=80' },
-    { name: 'Mercedes-Benz E-Class', price: '₹18,700', img: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=200&q=80' },
-    { name: 'Mercedes-Benz GLS',     price: '₹23,500', img: 'https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=200&q=80' },
-    { name: 'Audi A6',               price: '₹17,200', img: 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=200&q=80' },
-    { name: 'Jaguar XF',             price: '₹22,500', img: 'https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?w=200&q=80' },
+    { name: 'BMW 5 Series',          price: '₹18,400', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/130583/5-series-exterior-right-front-three-quarter-2.jpeg' },
+    { name: 'Mercedes-Benz E-Class', price: '₹18,700', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/113597/e-class-exterior-right-front-three-quarter-4.jpeg' },
+    { name: 'Mercedes-Benz GLS',     price: '₹23,500', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/87539/gls-exterior-right-front-three-quarter-3.jpeg' },
+    { name: 'Audi A6',               price: '₹17,200', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/113587/a6-exterior-right-front-three-quarter-2.jpeg' },
+    { name: 'Jaguar XF',             price: '₹22,500', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/44563/xf-exterior-right-front-three-quarter.jpeg' },
 ];
 
 const durationOptions = [
@@ -617,6 +617,7 @@ const CarRentalsHome = () => {
                                     <img
                                         src={item.img}
                                         alt={item.route}
+                                        onError={e => { e.currentTarget.src = 'https://via.placeholder.com/160x100?text=No+Image'; }}
                                         style={{
                                             width: 36,
                                             height: 36,
@@ -680,9 +681,10 @@ const CarRentalsHome = () => {
                                     <img
                                         src={car.img}
                                         alt={car.name}
+                                        onError={e => { e.currentTarget.src = 'https://via.placeholder.com/160x100?text=No+Image'; }}
                                         style={{
                                             width: '100%',
-                                            height: 120,
+                                            height: 140,
                                             objectFit: 'cover',
                                             borderRadius: 6,
                                             display: 'block',
@@ -733,9 +735,10 @@ const CarRentalsHome = () => {
                                     <img
                                         src={car.img}
                                         alt={car.name}
+                                        onError={e => { e.currentTarget.src = 'https://via.placeholder.com/160x100?text=No+Image'; }}
                                         style={{
                                             width: '100%',
-                                            height: 120,
+                                            height: 140,
                                             objectFit: 'cover',
                                             borderRadius: 6,
                                             display: 'block',

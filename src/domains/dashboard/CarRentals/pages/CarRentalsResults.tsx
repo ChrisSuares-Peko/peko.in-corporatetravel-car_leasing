@@ -48,21 +48,21 @@ const CAR_RESULTS = [
 ];
 
 const BIKE_RESULTS = [
-    { name: 'Royal Enfield Classic 350', bags: 2, seats: 2, bodyType: 'Cruiser',   airbags: 0, price: '1,200', kms: '', priceUnit: '/day', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=160&q=80' },
-    { name: 'Bajaj Dominar 400',         bags: 1, seats: 2, bodyType: 'Sport',     airbags: 0, price: '1,400', kms: '', priceUnit: '/day', img: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=160&q=80' },
-    { name: 'KTM Duke 390',              bags: 1, seats: 2, bodyType: 'Naked',     airbags: 0, price: '1,600', kms: '', priceUnit: '/day', img: 'https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=160&q=80' },
-    { name: 'Honda Hornet 2.0',          bags: 1, seats: 2, bodyType: 'Naked',     airbags: 0, price: '1,100', kms: '', priceUnit: '/day', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=160&q=80' },
-    { name: 'Yamaha MT-15',              bags: 1, seats: 2, bodyType: 'Naked',     airbags: 0, price: '1,300', kms: '', priceUnit: '/day', img: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=160&q=80' },
-    { name: 'Hero XPulse 200',           bags: 1, seats: 2, bodyType: 'Adventure', airbags: 0, price: '900',   kms: '', priceUnit: '/day', img: 'https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=160&q=80' },
+    { name: 'Royal Enfield Classic 350', bags: 2, seats: 2, bodyType: 'Cruiser',   airbags: 0, price: '1,200', kms: '', priceUnit: '/day', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/169891/classic-350-right-side-view.jpeg' },
+    { name: 'Bajaj Dominar 400',         bags: 1, seats: 2, bodyType: 'Sport',     airbags: 0, price: '1,400', kms: '', priceUnit: '/day', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/95707/dominar-400-right-side-view-2.jpeg' },
+    { name: 'KTM Duke 390',              bags: 1, seats: 2, bodyType: 'Naked',     airbags: 0, price: '1,600', kms: '', priceUnit: '/day', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/103533/390-duke-right-side-view-4.jpeg' },
+    { name: 'Honda Hornet 2.0',          bags: 1, seats: 2, bodyType: 'Naked',     airbags: 0, price: '1,100', kms: '', priceUnit: '/day', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/88372/hornet-2-0-right-side-view-2.jpeg' },
+    { name: 'Yamaha MT-15',              bags: 1, seats: 2, bodyType: 'Naked',     airbags: 0, price: '1,300', kms: '', priceUnit: '/day', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/88377/mt-15-right-side-view-5.jpeg' },
+    { name: 'Hero XPulse 200',           bags: 1, seats: 2, bodyType: 'Adventure', airbags: 0, price: '900',   kms: '', priceUnit: '/day', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/87944/xpulse-200-right-side-view-2.jpeg' },
 ];
 
 const SCOOTER_RESULTS = [
-    { name: 'Honda Activa 6G',    bags: 1, seats: 2, bodyType: 'Standard Scooter', airbags: 0, price: '600', kms: '', priceUnit: '/day', img: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=160&q=80' },
-    { name: 'TVS Jupiter',        bags: 1, seats: 2, bodyType: 'Standard Scooter', airbags: 0, price: '550', kms: '', priceUnit: '/day', img: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=160&q=80' },
-    { name: 'Ola S1 Pro',         bags: 1, seats: 2, bodyType: 'Electric Scooter', airbags: 0, price: '800', kms: '', priceUnit: '/day', img: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=160&q=80' },
-    { name: 'Ather 450X',         bags: 1, seats: 2, bodyType: 'Electric Scooter', airbags: 0, price: '750', kms: '', priceUnit: '/day', img: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=160&q=80' },
-    { name: 'TVS Ntorq 125',      bags: 1, seats: 2, bodyType: 'Standard Scooter', airbags: 0, price: '650', kms: '', priceUnit: '/day', img: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=160&q=80' },
-    { name: 'Yamaha Fascino 125', bags: 1, seats: 2, bodyType: 'Standard Scooter', airbags: 0, price: '580', kms: '', priceUnit: '/day', img: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=160&q=80' },
+    { name: 'Honda Activa 6G',    bags: 1, seats: 2, bodyType: 'Standard Scooter', airbags: 0, price: '600', kms: '', priceUnit: '/day', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/99491/activa-6g-right-side-view.jpeg' },
+    { name: 'TVS Jupiter',        bags: 1, seats: 2, bodyType: 'Standard Scooter', airbags: 0, price: '550', kms: '', priceUnit: '/day', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/44781/jupiter-right-side-view-4.jpeg' },
+    { name: 'Ola S1 Pro',         bags: 1, seats: 2, bodyType: 'Electric Scooter', airbags: 0, price: '800', kms: '', priceUnit: '/day', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/130341/s1-pro-right-side-view-2.jpeg' },
+    { name: 'Ather 450X',         bags: 1, seats: 2, bodyType: 'Electric Scooter', airbags: 0, price: '750', kms: '', priceUnit: '/day', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/130337/450x-right-side-view-3.jpeg' },
+    { name: 'TVS Ntorq 125',      bags: 1, seats: 2, bodyType: 'Standard Scooter', airbags: 0, price: '650', kms: '', priceUnit: '/day', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/44796/ntorq-125-right-side-view-6.jpeg' },
+    { name: 'Yamaha Fascino 125', bags: 1, seats: 2, bodyType: 'Standard Scooter', airbags: 0, price: '580', kms: '', priceUnit: '/day', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/107799/fascino-125-right-side-view-3.jpeg' },
 ];
 
 const MAKES_AND_MODELS = [
@@ -498,6 +498,7 @@ const CarRentalsResults = () => {
                                         <img
                                             src={car.img}
                                             alt={car.name}
+                                            onError={e => { e.currentTarget.src = 'https://via.placeholder.com/160x100?text=No+Image'; }}
                                             style={{
                                                 width: 120,
                                                 height: 80,
@@ -587,6 +588,7 @@ const CarRentalsResults = () => {
                                                     <img
                                                         src={car.img}
                                                         alt={car.name}
+                                                        onError={e => { e.currentTarget.src = 'https://via.placeholder.com/160x100?text=No+Image'; }}
                                                         style={{
                                                             width: '100%',
                                                             height: 280,
