@@ -1,6 +1,20 @@
 import React, { useState } from 'react';
 
-import { Button, Card, Col, DatePicker, Flex, Input, Row, Tabs, TimePicker, Typography } from 'antd';
+import {
+    Button,
+    Card,
+    Col,
+    DatePicker,
+    Flex,
+    Input,
+    InputNumber,
+    Radio,
+    Row,
+    Select,
+    Tabs,
+    TimePicker,
+    Typography,
+} from 'antd';
 
 const popularRoutes = [
     { route: 'Mumbai to Pune', price: '₹3,960' },
@@ -27,11 +41,172 @@ const luxuryCars = [
     { name: 'Jaguar XF', price: '₹22,500' },
 ];
 
+const durationOptions = [
+    { value: '4hrs', label: '4hrs / 40kms' },
+    { value: '8hrs', label: '8hrs / 80kms' },
+    { value: '12hrs', label: '12hrs / 120kms' },
+];
+
 const CarRentalsHome = () => {
     const [searchTab, setSearchTab] = useState('cabs');
+    const [cabSubType, setCabSubType] = useState('one-way');
+    const [airportDirection, setAirportDirection] = useState('drop');
     const [categoryTab, setCategoryTab] = useState('car');
     const [tierTab, setTierTab] = useState('budget');
     const [luxuryTab, setLuxuryTab] = useState('daily');
+
+    const radioClass = 'xs:text-xs md:text-sm md:font-semibold mt-1 me-4';
+
+    const renderCabFields = () => {
+        switch (cabSubType) {
+            case 'one-way':
+                return (
+                    <Row gutter={[12, 12]}>
+                        <Col xs={24} sm={12} md={6}>
+                            <Input placeholder="From city" size="large" />
+                        </Col>
+                        <Col xs={24} sm={12} md={6}>
+                            <Input placeholder="To city" size="large" />
+                        </Col>
+                        <Col xs={24} sm={12} md={6}>
+                            <DatePicker
+                                className="w-full"
+                                size="large"
+                                placeholder="Departure date"
+                            />
+                        </Col>
+                        <Col xs={24} sm={12} md={6}>
+                            <TimePicker
+                                className="w-full"
+                                size="large"
+                                placeholder="Pickup time"
+                                use12Hours
+                                format="h:mm a"
+                            />
+                        </Col>
+                    </Row>
+                );
+
+            case 'round-trip':
+                return (
+                    <Row gutter={[12, 12]}>
+                        <Col xs={24} sm={12} md={5}>
+                            <Input placeholder="From city" size="large" />
+                        </Col>
+                        <Col xs={24} sm={12} md={5}>
+                            <Input placeholder="To city" size="large" />
+                        </Col>
+                        <Col xs={24} sm={12} md={5}>
+                            <DatePicker
+                                className="w-full"
+                                size="large"
+                                placeholder="Departure date"
+                            />
+                        </Col>
+                        <Col xs={24} sm={12} md={5}>
+                            <DatePicker
+                                className="w-full"
+                                size="large"
+                                placeholder="Return date"
+                            />
+                        </Col>
+                        <Col xs={24} sm={24} md={4}>
+                            <TimePicker
+                                className="w-full"
+                                size="large"
+                                placeholder="Pickup time"
+                                use12Hours
+                                format="h:mm a"
+                            />
+                        </Col>
+                    </Row>
+                );
+
+            case 'airport':
+                return (
+                    <Flex vertical gap={12}>
+                        <Radio.Group
+                            value={airportDirection}
+                            onChange={e => setAirportDirection(e.target.value)}
+                            buttonStyle="solid"
+                        >
+                            <Radio.Button value="drop">Drop to Airport</Radio.Button>
+                            <Radio.Button value="pickup">Pickup from Airport</Radio.Button>
+                        </Radio.Group>
+                        <Row gutter={[12, 12]}>
+                            <Col xs={24} sm={12} md={6}>
+                                <Input placeholder="From city" size="large" />
+                            </Col>
+                            <Col xs={24} sm={12} md={6}>
+                                <Input placeholder="Drop airport" size="large" />
+                            </Col>
+                            <Col xs={24} sm={12} md={6}>
+                                <DatePicker
+                                    className="w-full"
+                                    size="large"
+                                    placeholder="Departure date"
+                                />
+                            </Col>
+                            <Col xs={24} sm={12} md={6}>
+                                <TimePicker
+                                    className="w-full"
+                                    size="large"
+                                    placeholder="Pickup time"
+                                    use12Hours
+                                    format="h:mm a"
+                                />
+                            </Col>
+                        </Row>
+                    </Flex>
+                );
+
+            case 'local':
+                return (
+                    <Row gutter={[12, 12]}>
+                        <Col xs={24} sm={12} md={5}>
+                            <Input placeholder="Pickup location" size="large" />
+                        </Col>
+                        <Col xs={24} sm={12} md={5}>
+                            <DatePicker
+                                className="w-full"
+                                size="large"
+                                placeholder="Departure date"
+                            />
+                        </Col>
+                        <Col xs={24} sm={12} md={5}>
+                            <TimePicker
+                                className="w-full"
+                                size="large"
+                                placeholder="Pickup time"
+                                use12Hours
+                                format="h:mm a"
+                            />
+                        </Col>
+                        <Col xs={24} sm={12} md={5}>
+                            <Select
+                                className="w-full"
+                                size="large"
+                                placeholder="Duration"
+                                options={durationOptions}
+                            />
+                        </Col>
+                        <Col xs={24} sm={12} md={4}>
+                            <InputNumber
+                                className="w-full"
+                                size="large"
+                                min={1}
+                                defaultValue={1}
+                                formatter={value => `${value} Day${Number(value) === 1 ? '' : 's'}`}
+                                parser={value => Number(value?.replace(/[^\d]/g, '') || '1')}
+                            />
+                        </Col>
+                    </Row>
+                );
+
+            default:
+                return null;
+        }
+    };
 
     return (
         <Flex vertical gap={32}>
@@ -64,65 +239,60 @@ const CarRentalsHome = () => {
                                 key: 'cabs',
                                 label: 'Cabs',
                                 children: (
-                                    <Row gutter={[12, 12]} align="middle">
-                                        <Col xs={24} sm={12} md={5}>
-                                            <Input placeholder="From city" size="large" />
-                                        </Col>
-                                        <Col xs={24} sm={12} md={5}>
-                                            <Input placeholder="To city" size="large" />
-                                        </Col>
-                                        <Col xs={24} sm={12} md={5}>
-                                            <DatePicker
-                                                className="w-full"
-                                                size="large"
-                                                placeholder="Date"
-                                            />
-                                        </Col>
-                                        <Col xs={24} sm={12} md={5}>
-                                            <TimePicker
-                                                className="w-full"
-                                                size="large"
-                                                placeholder="Time"
-                                                use12Hours
-                                                format="h:mm a"
-                                            />
-                                        </Col>
-                                        <Col xs={24} md={4}>
-                                            <Button type="primary" danger block size="large">
-                                                Search
-                                            </Button>
-                                        </Col>
-                                    </Row>
+                                    <Flex vertical gap={16}>
+                                        <Radio.Group
+                                            value={cabSubType}
+                                            onChange={e => setCabSubType(e.target.value)}
+                                            size="large"
+                                        >
+                                            <Radio value="one-way" className={radioClass}>
+                                                Outstation One-Way
+                                            </Radio>
+                                            <Radio value="round-trip" className={radioClass}>
+                                                Outstation Round-Trip
+                                            </Radio>
+                                            <Radio value="airport" className={radioClass}>
+                                                Airport Transfer
+                                            </Radio>
+                                            <Radio value="local" className={radioClass}>
+                                                Local/Hourly
+                                            </Radio>
+                                        </Radio.Group>
+                                        {renderCabFields()}
+                                        <Button type="primary" danger block size="large">
+                                            Search
+                                        </Button>
+                                    </Flex>
                                 ),
                             },
                             {
                                 key: 'self-drive',
                                 label: 'Self Drive',
                                 children: (
-                                    <Row gutter={[12, 12]} align="middle">
-                                        <Col xs={24} sm={12} md={6}>
-                                            <Input placeholder="Pickup city" size="large" />
-                                        </Col>
-                                        <Col xs={24} sm={12} md={6}>
-                                            <DatePicker
-                                                className="w-full"
-                                                size="large"
-                                                placeholder="Pickup date"
-                                            />
-                                        </Col>
-                                        <Col xs={24} sm={12} md={6}>
-                                            <DatePicker
-                                                className="w-full"
-                                                size="large"
-                                                placeholder="Return date"
-                                            />
-                                        </Col>
-                                        <Col xs={24} md={6}>
-                                            <Button type="primary" danger block size="large">
-                                                Search
-                                            </Button>
-                                        </Col>
-                                    </Row>
+                                    <Flex vertical gap={16}>
+                                        <Row gutter={[12, 12]}>
+                                            <Col xs={24} sm={12} md={8}>
+                                                <Input placeholder="Pickup city" size="large" />
+                                            </Col>
+                                            <Col xs={24} sm={12} md={8}>
+                                                <DatePicker
+                                                    className="w-full"
+                                                    size="large"
+                                                    placeholder="Pickup date"
+                                                />
+                                            </Col>
+                                            <Col xs={24} sm={12} md={8}>
+                                                <DatePicker
+                                                    className="w-full"
+                                                    size="large"
+                                                    placeholder="Return date"
+                                                />
+                                            </Col>
+                                        </Row>
+                                        <Button type="primary" danger block size="large">
+                                            Search
+                                        </Button>
+                                    </Flex>
                                 ),
                             },
                         ]}
