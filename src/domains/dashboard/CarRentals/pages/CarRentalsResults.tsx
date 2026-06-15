@@ -35,16 +35,16 @@ import {
 // ─── Static data ────────────────────────────────────────────────────────────
 
 const CAR_RESULTS = [
-    { name: 'Maruti Suzuki Ciaz',       bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '28,812', kms: '1296', priceUnit: '', img: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=160&q=80' },
-    { name: 'Maruti Suzuki Ertiga',      bags: 4, seats: 7, bodyType: 'MUV',       airbags: 4, price: '31,404', kms: '1296', priceUnit: '', img: 'https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=160&q=80' },
-    { name: 'Maruti Suzuki Celerio',     bags: 3, seats: 5, bodyType: 'Hatchback', airbags: 2, price: '31,604', kms: '1296', priceUnit: '', img: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=160&q=80' },
-    { name: 'Maruti Suzuki Wagon R',     bags: 3, seats: 5, bodyType: 'Hatchback', airbags: 2, price: '31,604', kms: '1296', priceUnit: '', img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=160&q=80' },
-    { name: 'Maruti Suzuki Swift Dzire', bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,696', kms: '1296', priceUnit: '', img: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=160&q=80' },
-    { name: 'Hyundai Aura',              bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,946', kms: '1296', priceUnit: '', img: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=160&q=80' },
-    { name: 'Maruti Suzuki Dzire',       bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 6, price: '33,946', kms: '1296', priceUnit: '', img: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=160&q=80' },
-    { name: 'Toyota Etios',              bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,946', kms: '1296', priceUnit: '', img: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=160&q=80' },
-    { name: 'Honda Amaze',               bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 6, price: '33,996', kms: '1296', priceUnit: '', img: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=160&q=80' },
-    { name: 'Hyundai Xcent',             bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,996', kms: '1296', priceUnit: '', img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=160&q=80' },
+    { name: 'Maruti Suzuki Ciaz',       bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '28,812', kms: '1296', priceUnit: '', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/45691/ciaz-exterior-right-front-three-quarter-3.jpeg' },
+    { name: 'Maruti Suzuki Ertiga',      bags: 4, seats: 7, bodyType: 'MUV',       airbags: 4, price: '31,404', kms: '1296', priceUnit: '', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/40432/ertiga-exterior-right-front-three-quarter-2.jpeg' },
+    { name: 'Maruti Suzuki Celerio',     bags: 3, seats: 5, bodyType: 'Hatchback', airbags: 2, price: '31,604', kms: '1296', priceUnit: '', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/130591/celerio-exterior-right-front-three-quarter-3.jpeg' },
+    { name: 'Maruti Suzuki Wagon R',     bags: 3, seats: 5, bodyType: 'Hatchback', airbags: 2, price: '31,604', kms: '1296', priceUnit: '', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/106343/wagon-r-exterior-right-front-three-quarter-3.jpeg' },
+    { name: 'Maruti Suzuki Swift Dzire', bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,696', kms: '1296', priceUnit: '', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/159007/dzire-exterior-right-front-three-quarter.jpeg' },
+    { name: 'Hyundai Aura',              bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,946', kms: '1296', priceUnit: '', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/106253/aura-exterior-right-front-three-quarter-4.jpeg' },
+    { name: 'Maruti Suzuki Dzire',       bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 6, price: '33,946', kms: '1296', priceUnit: '', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/159007/dzire-exterior-right-front-three-quarter.jpeg' },
+    { name: 'Toyota Etios',              bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,946', kms: '1296', priceUnit: '', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/44019/etios-exterior-right-front-three-quarter.jpeg' },
+    { name: 'Honda Amaze',               bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 6, price: '33,996', kms: '1296', priceUnit: '', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/132643/amaze-exterior-right-front-three-quarter-2.jpeg' },
+    { name: 'Hyundai Xcent',             bags: 4, seats: 5, bodyType: 'Sedan',     airbags: 2, price: '33,996', kms: '1296', priceUnit: '', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/106253/aura-exterior-right-front-three-quarter-4.jpeg' },
 ];
 
 const BIKE_RESULTS = [

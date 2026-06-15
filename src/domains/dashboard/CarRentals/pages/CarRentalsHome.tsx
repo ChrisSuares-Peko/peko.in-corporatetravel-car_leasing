@@ -45,10 +45,10 @@ const popularRoutes = [
 ];
 
 const budgetCars = [
-    { name: 'Maruti Suzuki Dzire', price: '₹3,200', img: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=200&q=80' },
+    { name: 'Maruti Suzuki Dzire', price: '₹3,200', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/159007/dzire-exterior-right-front-three-quarter.jpeg' },
     { name: 'Kia Sonet',           price: '₹3,500', img: 'https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=200&q=80' },
-    { name: 'Honda Amaze',         price: '₹3,200', img: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=200&q=80' },
-    { name: 'Hyundai Aura',        price: '₹3,100', img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=200&q=80' },
+    { name: 'Honda Amaze',         price: '₹3,200', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/132643/amaze-exterior-right-front-three-quarter-2.jpeg' },
+    { name: 'Hyundai Aura',        price: '₹3,100', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/106253/aura-exterior-right-front-three-quarter-4.jpeg' },
     { name: 'Tata Tigor',          price: '₹2,900', img: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=200&q=80' },
 ];
 
