@@ -35,29 +35,56 @@ const VEHICLE_TYPES = [
     { value: 'scooter', label: 'Scooter' },
 ];
 
+// ─── VehicleImage ─────────────────────────────────────────────────────────────
+
+const VehicleImage = ({ make, model, width = 120, height = 80 }: {
+    make: string; model: string; width?: number; height?: number;
+}) => (
+    <div style={{
+        width, height, background: '#F5F5F5', borderRadius: 4,
+        display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center',
+        border: '1px solid #E8E8E8', overflow: 'hidden', flexShrink: 0,
+    }}>
+        <svg width={width * 0.55} height={height * 0.45} viewBox="0 0 60 30" fill="none">
+            <rect x="5" y="12" width="50" height="12" rx="3" fill="#D9D9D9"/>
+            <rect x="12" y="6" width="30" height="10" rx="3" fill="#BFBFBF"/>
+            <circle cx="15" cy="25" r="4" fill="#8C8C8C"/>
+            <circle cx="45" cy="25" r="4" fill="#8C8C8C"/>
+            <rect x="13" y="8" width="12" height="6" rx="1" fill="#E6F7FF"/>
+            <rect x="27" y="8" width="12" height="6" rx="1" fill="#E6F7FF"/>
+        </svg>
+        <div style={{ fontSize: 9, color: '#8C8C8C', marginTop: 2, textAlign: 'center', padding: '0 4px', lineHeight: 1.2 }}>
+            {make} {model}
+        </div>
+    </div>
+);
+
+// ─── Static data ──────────────────────────────────────────────────────────────
+
 const popularRoutes = [
-    { route: 'Mumbai to Pune',          price: '₹3,960', img: 'https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?w=80&q=80' },
-    { route: 'Bangalore to Mysore',     price: '₹3,960', img: 'https://images.unsplash.com/photo-1580889240428-a8ed8b5a4b43?w=80&q=80' },
-    { route: 'Delhi to Agra',           price: '₹4,200', img: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=80&q=80' },
-    { route: 'Chennai to Bangalore',    price: '₹5,500', img: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=80&q=80' },
-    { route: 'Hyderabad to Vijayawada', price: '₹3,200', img: 'https://images.unsplash.com/photo-1600100397608-658dcab04e61?w=80&q=80' },
-    { route: 'Delhi to Jaipur',         price: '₹4,800', img: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?w=80&q=80' },
+    { from: 'Mumbai',    to: 'Pune',       price: '₹3,960' },
+    { from: 'Bangalore', to: 'Mysore',     price: '₹3,960' },
+    { from: 'Delhi',     to: 'Agra',       price: '₹4,200' },
+    { from: 'Chennai',   to: 'Bangalore',  price: '₹5,500' },
+    { from: 'Hyderabad', to: 'Vijayawada', price: '₹3,200' },
+    { from: 'Delhi',     to: 'Jaipur',     price: '₹4,800' },
 ];
 
 const budgetCars = [
-    { name: 'Maruti Suzuki Dzire', price: '₹3,200', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/159007/dzire-exterior-right-front-three-quarter.jpeg' },
-    { name: 'Kia Sonet',           price: '₹3,500', img: 'https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=200&q=80' },
-    { name: 'Honda Amaze',         price: '₹3,200', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/132643/amaze-exterior-right-front-three-quarter-2.jpeg' },
-    { name: 'Hyundai Aura',        price: '₹3,100', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/106253/aura-exterior-right-front-three-quarter-4.jpeg' },
-    { name: 'Tata Tigor',          price: '₹2,900', img: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=200&q=80' },
+    { name: 'Maruti Suzuki Dzire', make: 'Maruti Suzuki', model: 'Dzire', price: '₹3,200' },
+    { name: 'Kia Sonet',           make: 'Kia',           model: 'Sonet', price: '₹3,500' },
+    { name: 'Honda Amaze',         make: 'Honda',         model: 'Amaze', price: '₹3,200' },
+    { name: 'Hyundai Aura',        make: 'Hyundai',       model: 'Aura',  price: '₹3,100' },
+    { name: 'Tata Tigor',          make: 'Tata',          model: 'Tigor', price: '₹2,900' },
 ];
 
 const luxuryCars = [
-    { name: 'BMW 5 Series',          price: '₹18,400', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/130583/5-series-exterior-right-front-three-quarter-2.jpeg' },
-    { name: 'Mercedes-Benz E-Class', price: '₹18,700', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/113597/e-class-exterior-right-front-three-quarter-4.jpeg' },
-    { name: 'Mercedes-Benz GLS',     price: '₹23,500', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/87539/gls-exterior-right-front-three-quarter-3.jpeg' },
-    { name: 'Audi A6',               price: '₹17,200', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/113587/a6-exterior-right-front-three-quarter-2.jpeg' },
-    { name: 'Jaguar XF',             price: '₹22,500', img: 'https://imgd.aeplcdn.com/664x374/n/cw/ec/44563/xf-exterior-right-front-three-quarter.jpeg' },
+    { name: 'BMW 5 Series',          make: 'BMW',           model: '5 Series', price: '₹18,400' },
+    { name: 'Mercedes-Benz E-Class', make: 'Mercedes-Benz', model: 'E-Class',  price: '₹18,700' },
+    { name: 'Mercedes-Benz GLS',     make: 'Mercedes-Benz', model: 'GLS',      price: '₹23,500' },
+    { name: 'Audi A6',               make: 'Audi',          model: 'A6',       price: '₹17,200' },
+    { name: 'Jaguar XF',             make: 'Jaguar',        model: 'XF',       price: '₹22,500' },
 ];
 
 const durationOptions = [
@@ -81,7 +108,6 @@ const CarRentalsHome = () => {
     const [tierTab, setTierTab] = useState('budget');
     const [luxuryTab, setLuxuryTab] = useState('daily');
 
-    // Search field selections — passed as query params to Results
     const [fromCity, setFromCity] = useState<string | undefined>(undefined);
     const [toCity, setToCity] = useState<string | undefined>(undefined);
     const [selfDriveCity, setSelfDriveCity] = useState<string | undefined>(undefined);
@@ -103,7 +129,6 @@ const CarRentalsHome = () => {
             params.set('rentalType', 'selfDrive');
             if (selfDriveCity) params.set('fromCity', selfDriveCity);
         } else {
-            // Cabs
             params.set('rentalType', 'cabs');
             const bookingTypeMap: Record<string, string> = {
                 'one-way':    'outstationOneWay',
@@ -128,49 +153,25 @@ const CarRentalsHome = () => {
                         <Col xs={24} sm={12} md={6}>
                             <Flex vertical gap={4}>
                                 <FieldLabel>From</FieldLabel>
-                                <Select
-                                    className="w-full"
-                                    size="large"
-                                    placeholder="Select city"
-                                    options={CITIES}
-                                    value={fromCity}
-                                    onChange={setFromCity}
-                                />
+                                <Select className="w-full" size="large" placeholder="Select city" options={CITIES} value={fromCity} onChange={setFromCity} />
                             </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={6}>
                             <Flex vertical gap={4}>
                                 <FieldLabel>To</FieldLabel>
-                                <Select
-                                    className="w-full"
-                                    size="large"
-                                    placeholder="Select city"
-                                    options={CITIES}
-                                    value={toCity}
-                                    onChange={setToCity}
-                                />
+                                <Select className="w-full" size="large" placeholder="Select city" options={CITIES} value={toCity} onChange={setToCity} />
                             </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={6}>
                             <Flex vertical gap={4}>
                                 <FieldLabel>Departure Date</FieldLabel>
-                                <DatePicker
-                                    className="w-full"
-                                    size="large"
-                                    placeholder="Select date"
-                                />
+                                <DatePicker className="w-full" size="large" placeholder="Select date" />
                             </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={6}>
                             <Flex vertical gap={4}>
                                 <FieldLabel>Pickup Time</FieldLabel>
-                                <TimePicker
-                                    className="w-full"
-                                    size="large"
-                                    placeholder="Select time"
-                                    use12Hours
-                                    format="h:mm a"
-                                />
+                                <TimePicker className="w-full" size="large" placeholder="Select time" use12Hours format="h:mm a" />
                             </Flex>
                         </Col>
                     </Row>
@@ -182,59 +183,31 @@ const CarRentalsHome = () => {
                         <Col xs={24} sm={12} md={5}>
                             <Flex vertical gap={4}>
                                 <FieldLabel>From</FieldLabel>
-                                <Select
-                                    className="w-full"
-                                    size="large"
-                                    placeholder="Select city"
-                                    options={CITIES}
-                                    value={fromCity}
-                                    onChange={setFromCity}
-                                />
+                                <Select className="w-full" size="large" placeholder="Select city" options={CITIES} value={fromCity} onChange={setFromCity} />
                             </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={5}>
                             <Flex vertical gap={4}>
                                 <FieldLabel>To</FieldLabel>
-                                <Select
-                                    className="w-full"
-                                    size="large"
-                                    placeholder="Select city"
-                                    options={CITIES}
-                                    value={toCity}
-                                    onChange={setToCity}
-                                />
+                                <Select className="w-full" size="large" placeholder="Select city" options={CITIES} value={toCity} onChange={setToCity} />
                             </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={5}>
                             <Flex vertical gap={4}>
                                 <FieldLabel>Departure Date</FieldLabel>
-                                <DatePicker
-                                    className="w-full"
-                                    size="large"
-                                    placeholder="Select date"
-                                />
+                                <DatePicker className="w-full" size="large" placeholder="Select date" />
                             </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={5}>
                             <Flex vertical gap={4}>
                                 <FieldLabel>Return Date</FieldLabel>
-                                <DatePicker
-                                    className="w-full"
-                                    size="large"
-                                    placeholder="Select date"
-                                />
+                                <DatePicker className="w-full" size="large" placeholder="Select date" />
                             </Flex>
                         </Col>
                         <Col xs={24} sm={24} md={4}>
                             <Flex vertical gap={4}>
                                 <FieldLabel>Pickup Time</FieldLabel>
-                                <TimePicker
-                                    className="w-full"
-                                    size="large"
-                                    placeholder="Select time"
-                                    use12Hours
-                                    format="h:mm a"
-                                />
+                                <TimePicker className="w-full" size="large" placeholder="Select time" use12Hours format="h:mm a" />
                             </Flex>
                         </Col>
                     </Row>
@@ -243,11 +216,7 @@ const CarRentalsHome = () => {
             case 'airport':
                 return (
                     <Flex vertical gap={12}>
-                        <Radio.Group
-                            value={airportDirection}
-                            onChange={e => setAirportDirection(e.target.value)}
-                            buttonStyle="solid"
-                        >
+                        <Radio.Group value={airportDirection} onChange={e => setAirportDirection(e.target.value)} buttonStyle="solid">
                             <Radio.Button value="drop">Drop to Airport</Radio.Button>
                             <Radio.Button value="pickup">Pickup from Airport</Radio.Button>
                         </Radio.Group>
@@ -255,14 +224,7 @@ const CarRentalsHome = () => {
                             <Col xs={24} sm={12} md={6}>
                                 <Flex vertical gap={4}>
                                     <FieldLabel>From City</FieldLabel>
-                                    <Select
-                                        className="w-full"
-                                        size="large"
-                                        placeholder="Select city"
-                                        options={CITIES}
-                                        value={fromCity}
-                                        onChange={setFromCity}
-                                    />
+                                    <Select className="w-full" size="large" placeholder="Select city" options={CITIES} value={fromCity} onChange={setFromCity} />
                                 </Flex>
                             </Col>
                             <Col xs={24} sm={12} md={6}>
@@ -274,23 +236,13 @@ const CarRentalsHome = () => {
                             <Col xs={24} sm={12} md={6}>
                                 <Flex vertical gap={4}>
                                     <FieldLabel>Date</FieldLabel>
-                                    <DatePicker
-                                        className="w-full"
-                                        size="large"
-                                        placeholder="Select date"
-                                    />
+                                    <DatePicker className="w-full" size="large" placeholder="Select date" />
                                 </Flex>
                             </Col>
                             <Col xs={24} sm={12} md={6}>
                                 <Flex vertical gap={4}>
                                     <FieldLabel>Pickup Time</FieldLabel>
-                                    <TimePicker
-                                        className="w-full"
-                                        size="large"
-                                        placeholder="Select time"
-                                        use12Hours
-                                        format="h:mm a"
-                                    />
+                                    <TimePicker className="w-full" size="large" placeholder="Select time" use12Hours format="h:mm a" />
                                 </Flex>
                             </Col>
                         </Row>
@@ -303,47 +255,25 @@ const CarRentalsHome = () => {
                         <Col xs={24} sm={12} md={5}>
                             <Flex vertical gap={4}>
                                 <FieldLabel>Pickup City</FieldLabel>
-                                <Select
-                                    className="w-full"
-                                    size="large"
-                                    placeholder="Select city"
-                                    options={CITIES}
-                                    value={fromCity}
-                                    onChange={setFromCity}
-                                />
+                                <Select className="w-full" size="large" placeholder="Select city" options={CITIES} value={fromCity} onChange={setFromCity} />
                             </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={5}>
                             <Flex vertical gap={4}>
                                 <FieldLabel>Date</FieldLabel>
-                                <DatePicker
-                                    className="w-full"
-                                    size="large"
-                                    placeholder="Select date"
-                                />
+                                <DatePicker className="w-full" size="large" placeholder="Select date" />
                             </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={5}>
                             <Flex vertical gap={4}>
                                 <FieldLabel>Pickup Time</FieldLabel>
-                                <TimePicker
-                                    className="w-full"
-                                    size="large"
-                                    placeholder="Select time"
-                                    use12Hours
-                                    format="h:mm a"
-                                />
+                                <TimePicker className="w-full" size="large" placeholder="Select time" use12Hours format="h:mm a" />
                             </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={5}>
                             <Flex vertical gap={4}>
                                 <FieldLabel>Duration</FieldLabel>
-                                <Select
-                                    className="w-full"
-                                    size="large"
-                                    placeholder="Duration"
-                                    options={durationOptions}
-                                />
+                                <Select className="w-full" size="large" placeholder="Duration" options={durationOptions} />
                             </Flex>
                         </Col>
                         <Col xs={24} sm={12} md={4}>
@@ -354,12 +284,8 @@ const CarRentalsHome = () => {
                                     size="large"
                                     min={1}
                                     defaultValue={1}
-                                    formatter={value =>
-                                        `${value} Day${Number(value) === 1 ? '' : 's'}`
-                                    }
-                                    parser={value =>
-                                        Number(value?.replace(/[^\d]/g, '') || '1')
-                                    }
+                                    formatter={value => `${value} Day${Number(value) === 1 ? '' : 's'}`}
+                                    parser={value => Number(value?.replace(/[^\d]/g, '') || '1')}
                                 />
                             </Flex>
                         </Col>
@@ -398,7 +324,6 @@ const CarRentalsHome = () => {
                     style={{ borderRadius: 8, boxShadow: CARD_SHADOW }}
                     bodyStyle={{ padding: 16 }}
                 >
-                    {/* Top-level tabs: Cars / 2 Wheelers */}
                     <Tabs
                         activeKey={mainTab}
                         onChange={setMainTab}
@@ -408,7 +333,6 @@ const CarRentalsHome = () => {
                                 key: 'cars',
                                 label: 'Cars',
                                 children: (
-                                    /* Secondary tabs: Cabs / Self Drive */
                                     <Tabs
                                         activeKey={searchTab}
                                         onChange={setSearchTab}
@@ -418,46 +342,14 @@ const CarRentalsHome = () => {
                                                 label: 'Cabs',
                                                 children: (
                                                     <Flex vertical gap={16}>
-                                                        <Radio.Group
-                                                            value={cabSubType}
-                                                            onChange={e =>
-                                                                setCabSubType(e.target.value)
-                                                            }
-                                                            size="large"
-                                                        >
-                                                            <Radio
-                                                                value="one-way"
-                                                                className={radioClass}
-                                                            >
-                                                                Outstation One-Way
-                                                            </Radio>
-                                                            <Radio
-                                                                value="round-trip"
-                                                                className={radioClass}
-                                                            >
-                                                                Outstation Round-Trip
-                                                            </Radio>
-                                                            <Radio
-                                                                value="airport"
-                                                                className={radioClass}
-                                                            >
-                                                                Airport Transfer
-                                                            </Radio>
-                                                            <Radio
-                                                                value="local"
-                                                                className={radioClass}
-                                                            >
-                                                                Local/Hourly
-                                                            </Radio>
+                                                        <Radio.Group value={cabSubType} onChange={e => setCabSubType(e.target.value)} size="large">
+                                                            <Radio value="one-way" className={radioClass}>Outstation One-Way</Radio>
+                                                            <Radio value="round-trip" className={radioClass}>Outstation Round-Trip</Radio>
+                                                            <Radio value="airport" className={radioClass}>Airport Transfer</Radio>
+                                                            <Radio value="local" className={radioClass}>Local/Hourly</Radio>
                                                         </Radio.Group>
                                                         {renderCabFields()}
-                                                        <Button
-                                                            type="primary"
-                                                            danger
-                                                            block
-                                                            size="large"
-                                                            onClick={goToResults}
-                                                        >
+                                                        <Button type="primary" danger block size="large" onClick={goToResults}>
                                                             Search
                                                         </Button>
                                                     </Flex>
@@ -471,51 +363,24 @@ const CarRentalsHome = () => {
                                                         <Row gutter={[12, 12]}>
                                                             <Col xs={24} sm={12} md={8}>
                                                                 <Flex vertical gap={4}>
-                                                                    <FieldLabel>
-                                                                        Pickup City
-                                                                    </FieldLabel>
-                                                                    <Select
-                                                                        className="w-full"
-                                                                        size="large"
-                                                                        placeholder="Select city"
-                                                                        options={CITIES}
-                                                                        value={selfDriveCity}
-                                                                        onChange={setSelfDriveCity}
-                                                                    />
+                                                                    <FieldLabel>Pickup City</FieldLabel>
+                                                                    <Select className="w-full" size="large" placeholder="Select city" options={CITIES} value={selfDriveCity} onChange={setSelfDriveCity} />
                                                                 </Flex>
                                                             </Col>
                                                             <Col xs={24} sm={12} md={8}>
                                                                 <Flex vertical gap={4}>
-                                                                    <FieldLabel>
-                                                                        Pickup Date
-                                                                    </FieldLabel>
-                                                                    <DatePicker
-                                                                        className="w-full"
-                                                                        size="large"
-                                                                        placeholder="Select date"
-                                                                    />
+                                                                    <FieldLabel>Pickup Date</FieldLabel>
+                                                                    <DatePicker className="w-full" size="large" placeholder="Select date" />
                                                                 </Flex>
                                                             </Col>
                                                             <Col xs={24} sm={12} md={8}>
                                                                 <Flex vertical gap={4}>
-                                                                    <FieldLabel>
-                                                                        Return Date
-                                                                    </FieldLabel>
-                                                                    <DatePicker
-                                                                        className="w-full"
-                                                                        size="large"
-                                                                        placeholder="Select date"
-                                                                    />
+                                                                    <FieldLabel>Return Date</FieldLabel>
+                                                                    <DatePicker className="w-full" size="large" placeholder="Select date" />
                                                                 </Flex>
                                                             </Col>
                                                         </Row>
-                                                        <Button
-                                                            type="primary"
-                                                            danger
-                                                            block
-                                                            size="large"
-                                                            onClick={goToResults}
-                                                        >
+                                                        <Button type="primary" danger block size="large" onClick={goToResults}>
                                                             Search
                                                         </Button>
                                                     </Flex>
@@ -534,57 +399,29 @@ const CarRentalsHome = () => {
                                             <Col xs={24} sm={12} md={6}>
                                                 <Flex vertical gap={4}>
                                                     <FieldLabel>Vehicle Type</FieldLabel>
-                                                    <Select
-                                                        className="w-full"
-                                                        size="large"
-                                                        placeholder="Select type"
-                                                        options={VEHICLE_TYPES}
-                                                        value={twoWheelerVehicle}
-                                                        onChange={setTwoWheelerVehicle}
-                                                    />
+                                                    <Select className="w-full" size="large" placeholder="Select type" options={VEHICLE_TYPES} value={twoWheelerVehicle} onChange={setTwoWheelerVehicle} />
                                                 </Flex>
                                             </Col>
                                             <Col xs={24} sm={12} md={6}>
                                                 <Flex vertical gap={4}>
                                                     <FieldLabel>Pickup City</FieldLabel>
-                                                    <Select
-                                                        className="w-full"
-                                                        size="large"
-                                                        placeholder="Select city"
-                                                        options={CITIES}
-                                                        value={twoWheelerCity}
-                                                        onChange={setTwoWheelerCity}
-                                                    />
+                                                    <Select className="w-full" size="large" placeholder="Select city" options={CITIES} value={twoWheelerCity} onChange={setTwoWheelerCity} />
                                                 </Flex>
                                             </Col>
                                             <Col xs={24} sm={12} md={6}>
                                                 <Flex vertical gap={4}>
                                                     <FieldLabel>Pickup Date</FieldLabel>
-                                                    <DatePicker
-                                                        className="w-full"
-                                                        size="large"
-                                                        placeholder="Select date"
-                                                    />
+                                                    <DatePicker className="w-full" size="large" placeholder="Select date" />
                                                 </Flex>
                                             </Col>
                                             <Col xs={24} sm={12} md={6}>
                                                 <Flex vertical gap={4}>
                                                     <FieldLabel>Return Date</FieldLabel>
-                                                    <DatePicker
-                                                        className="w-full"
-                                                        size="large"
-                                                        placeholder="Select date"
-                                                    />
+                                                    <DatePicker className="w-full" size="large" placeholder="Select date" />
                                                 </Flex>
                                             </Col>
                                         </Row>
-                                        <Button
-                                            type="primary"
-                                            danger
-                                            block
-                                            size="large"
-                                            onClick={goToResults}
-                                        >
+                                        <Button type="primary" danger block size="large" onClick={goToResults}>
                                             Search
                                         </Button>
                                     </Flex>
@@ -606,29 +443,19 @@ const CarRentalsHome = () => {
                             <Card
                                 key={i}
                                 bordered={false}
-                                style={{
-                                    width: 240,
-                                    borderRadius: 12,
-                                    boxShadow: CARD_SHADOW,
-                                    cursor: 'pointer',
-                                }}
+                                style={{ width: 240, borderRadius: 12, boxShadow: CARD_SHADOW, cursor: 'pointer' }}
                             >
                                 <Flex gap={10} align="center">
-                                    <img
-                                        src={item.img}
-                                        alt={item.route}
-                                        onError={e => { e.currentTarget.src = 'https://via.placeholder.com/160x100?text=No+Image'; }}
-                                        style={{
-                                            width: 36,
-                                            height: 36,
-                                            borderRadius: '50%',
-                                            objectFit: 'cover',
-                                            flexShrink: 0,
-                                        }}
-                                    />
+                                    <div style={{
+                                        width: 48, height: 48, borderRadius: '50%', background: '#FFF1F0',
+                                        border: '1px solid #FFD6D6', display: 'flex', alignItems: 'center',
+                                        justifyContent: 'center', fontSize: 11, color: '#FF4F4F', fontWeight: 600, flexShrink: 0,
+                                    }}>
+                                        {item.from.charAt(0)}{item.to.charAt(0)}
+                                    </div>
                                     <Flex vertical gap={4}>
                                         <Typography.Text strong className="text-sm">
-                                            {item.route}
+                                            {item.from} to {item.to}
                                         </Typography.Text>
                                         <Typography.Text className="text-textGreyLight text-xs">
                                             Starts from {item.price}
@@ -672,33 +499,15 @@ const CarRentalsHome = () => {
                             <Card
                                 bordered={false}
                                 className="h-full"
-                                style={{
-                                    borderRadius: 12,
-                                    boxShadow: CARD_SHADOW,
-                                }}
+                                style={{ borderRadius: 12, boxShadow: CARD_SHADOW }}
                             >
                                 <Flex vertical gap={8}>
-                                    <img
-                                        src={car.img}
-                                        alt={car.name}
-                                        onError={e => { e.currentTarget.src = 'https://via.placeholder.com/160x100?text=No+Image'; }}
-                                        style={{
-                                            width: '100%',
-                                            height: 140,
-                                            objectFit: 'cover',
-                                            borderRadius: 6,
-                                            display: 'block',
-                                        }}
-                                    />
-                                    <Typography.Text strong className="text-sm">
-                                        {car.name}
-                                    </Typography.Text>
+                                    <VehicleImage make={car.make} model={car.model} width={200} height={140} />
+                                    <Typography.Text strong className="text-sm">{car.name}</Typography.Text>
                                     <Typography.Text className="text-textGreyLight text-xs">
                                         Rental Starts from {car.price}
                                     </Typography.Text>
-                                    <Button type="primary" danger size="small">
-                                        Book Now
-                                    </Button>
+                                    <Button type="primary" danger size="small">Book Now</Button>
                                 </Flex>
                             </Card>
                         </Col>
@@ -726,33 +535,15 @@ const CarRentalsHome = () => {
                             <Card
                                 bordered={false}
                                 className="h-full"
-                                style={{
-                                    borderRadius: 12,
-                                    boxShadow: CARD_SHADOW,
-                                }}
+                                style={{ borderRadius: 12, boxShadow: CARD_SHADOW }}
                             >
                                 <Flex vertical gap={8}>
-                                    <img
-                                        src={car.img}
-                                        alt={car.name}
-                                        onError={e => { e.currentTarget.src = 'https://via.placeholder.com/160x100?text=No+Image'; }}
-                                        style={{
-                                            width: '100%',
-                                            height: 140,
-                                            objectFit: 'cover',
-                                            borderRadius: 6,
-                                            display: 'block',
-                                        }}
-                                    />
-                                    <Typography.Text strong className="text-sm">
-                                        {car.name}
-                                    </Typography.Text>
+                                    <VehicleImage make={car.make} model={car.model} width={200} height={140} />
+                                    <Typography.Text strong className="text-sm">{car.name}</Typography.Text>
                                     <Typography.Text className="text-textGreyLight text-xs">
                                         Rental Starts from {car.price}
                                     </Typography.Text>
-                                    <Button type="primary" danger size="small">
-                                        Book Now
-                                    </Button>
+                                    <Button type="primary" danger size="small">Book Now</Button>
                                 </Flex>
                             </Card>
                         </Col>

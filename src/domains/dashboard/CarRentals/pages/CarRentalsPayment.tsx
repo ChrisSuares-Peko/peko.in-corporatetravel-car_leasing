@@ -22,13 +22,13 @@ import { useNavigate } from 'react-router-dom';
 import { paths } from '@src/routes/paths';
 
 const billRows = [
-    { label: 'Service name',             value: 'Car Rentals' },
-    { label: 'Trip type',                value: 'Outstation One Way Trip' },
-    { label: 'Route',                    value: 'Mumbai → Agra' },
-    { label: 'Travel Date',              value: '15 Jun 2026, 04:45 pm' },
-    { label: 'Vehicle',                  value: 'Maruti Suzuki Ciaz Sigma 1.5 2024' },
-    { label: 'Amount Payable Online',    value: '₹10,084' },
-    { label: 'Balance to Driver (Offline)', value: '₹18,728' },
+    { label: 'Service name',                value: 'Car Rentals' },
+    { label: 'Trip type',                   value: 'Outstation One Way Trip' },
+    { label: 'Route',                       value: 'Mumbai → Agra' },
+    { label: 'Travel Date',                 value: '15 Jun 2026, 04:45 pm' },
+    { label: 'Vehicle',                     value: 'Honda Amaze VX MT 2024' },
+    { label: 'Amount Payable Online',       value: '₹541' },
+    { label: 'Balance to Driver (Offline)', value: '₹961' },
 ];
 
 const CarRentalsPayment = () => {
@@ -231,7 +231,7 @@ const CarRentalsPayment = () => {
                                     Subtotal
                                 </Typography.Text>
                                 <Typography.Text className="text-sm font-medium sm:text-base">
-                                    ₹10,084
+                                    ₹541
                                 </Typography.Text>
                             </Flex>
                             <Flex justify="space-between">
@@ -239,7 +239,7 @@ const CarRentalsPayment = () => {
                                     Platform fee (inclusive of taxes)
                                 </Typography.Text>
                                 <Typography.Text className="text-sm font-medium sm:text-base">
-                                    ₹500
+                                    ₹50
                                 </Typography.Text>
                             </Flex>
                             <Divider style={{ margin: '4px 0' }} />
@@ -248,7 +248,7 @@ const CarRentalsPayment = () => {
                                     Total
                                 </Typography.Title>
                                 <Typography.Title level={5} className="!mb-0">
-                                    ₹10,584
+                                    ₹591
                                 </Typography.Title>
                             </Flex>
                             <Button
@@ -258,7 +258,7 @@ const CarRentalsPayment = () => {
                                 className="h-14"
                                 onClick={() => setPaid(true)}
                             >
-                                Pay ₹10,584
+                                Pay ₹591
                             </Button>
                         </Flex>
                     </Flex>

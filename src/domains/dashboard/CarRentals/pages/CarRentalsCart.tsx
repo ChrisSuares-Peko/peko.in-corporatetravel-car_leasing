@@ -1,12 +1,35 @@
 import React from 'react';
 
 import { Button, Card, Col, Divider, Flex, Row, Typography } from 'antd';
-import { CarOutlined, DeleteOutlined, HeartOutlined } from '@ant-design/icons';
+import { DeleteOutlined, HeartOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
 import { paths } from '@src/routes/paths';
 
 const CARD_SHADOW = '0px 1.94px 19.398px 0px rgba(0, 0, 0, 0.10)';
+
+const VehicleImage = ({ make, model, width = 120, height = 80 }: {
+    make: string; model: string; width?: number; height?: number;
+}) => (
+    <div style={{
+        width, height, background: '#F5F5F5', borderRadius: 4,
+        display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center',
+        border: '1px solid #E8E8E8', overflow: 'hidden', flexShrink: 0,
+    }}>
+        <svg width={width * 0.55} height={height * 0.45} viewBox="0 0 60 30" fill="none">
+            <rect x="5" y="12" width="50" height="12" rx="3" fill="#D9D9D9"/>
+            <rect x="12" y="6" width="30" height="10" rx="3" fill="#BFBFBF"/>
+            <circle cx="15" cy="25" r="4" fill="#8C8C8C"/>
+            <circle cx="45" cy="25" r="4" fill="#8C8C8C"/>
+            <rect x="13" y="8" width="12" height="6" rx="1" fill="#E6F7FF"/>
+            <rect x="27" y="8" width="12" height="6" rx="1" fill="#E6F7FF"/>
+        </svg>
+        <div style={{ fontSize: 9, color: '#8C8C8C', marginTop: 2, textAlign: 'center', padding: '0 4px', lineHeight: 1.2 }}>
+            {make} {model}
+        </div>
+    </div>
+);
 
 const CarRentalsCart = () => {
     const navigate = useNavigate();
@@ -26,90 +49,42 @@ const CarRentalsCart = () => {
                         className="rounded-xl"
                         style={{ boxShadow: CARD_SHADOW }}
                     >
-                        {/* Trip header */}
                         <Flex vertical gap={14}>
                             <Typography.Text strong>Outstation One Way Trip</Typography.Text>
 
-                            {/* Route visualizer */}
                             <Flex align="center" gap={10}>
                                 <Typography.Text strong>Mumbai</Typography.Text>
                                 <Flex align="center" style={{ flex: 1 }}>
-                                    <div
-                                        style={{
-                                            width: 8,
-                                            height: 8,
-                                            borderRadius: '50%',
-                                            background: '#bfbfbf',
-                                            flexShrink: 0,
-                                        }}
-                                    />
-                                    <div
-                                        style={{
-                                            flex: 1,
-                                            borderTop: '2px dashed #bfbfbf',
-                                        }}
-                                    />
-                                    <div
-                                        style={{
-                                            width: 8,
-                                            height: 8,
-                                            borderRadius: '50%',
-                                            background: '#bfbfbf',
-                                            flexShrink: 0,
-                                        }}
-                                    />
+                                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#bfbfbf', flexShrink: 0 }} />
+                                    <div style={{ flex: 1, borderTop: '2px dashed #bfbfbf' }} />
+                                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#bfbfbf', flexShrink: 0 }} />
                                 </Flex>
                                 <Typography.Text strong>Agra</Typography.Text>
                             </Flex>
 
-                            {/* Start time */}
                             <Flex gap={8} align="center">
-                                <Typography.Text className="text-textGreyLight text-sm">
-                                    Start Time
-                                </Typography.Text>
-                                <Typography.Text className="text-sm">
-                                    15 Jun 2026, 04:45 pm
-                                </Typography.Text>
+                                <Typography.Text className="text-textGreyLight text-sm">Start Time</Typography.Text>
+                                <Typography.Text className="text-sm">15 Jun 2026, 04:45 pm</Typography.Text>
                             </Flex>
                         </Flex>
 
                         <Divider />
 
-                        {/* Car item row */}
                         <Row gutter={[16, 12]} align="middle">
-                            {/* Car image */}
                             <Col xs={24} sm={3}>
-                                <img
-                                    src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=200&q=80"
-                                    alt="Maruti Suzuki Ciaz Sigma"
-                                    style={{
-                                        width: 80,
-                                        height: 60,
-                                        objectFit: 'cover',
-                                        borderRadius: 6,
-                                        display: 'block',
-                                    }}
-                                />
+                                <VehicleImage make="Honda" model="Amaze" width={80} height={60} />
                             </Col>
 
-                            {/* Car name + type */}
                             <Col xs={24} sm={13}>
                                 <Flex vertical gap={4}>
-                                    <Typography.Text strong>
-                                        Maruti Suzuki Ciaz Sigma 1.5 2024
-                                    </Typography.Text>
-                                    <Typography.Text className="text-textGreyLight text-sm">
-                                        Sedan | 5 seats
-                                    </Typography.Text>
+                                    <Typography.Text strong>Honda Amaze VX MT 2024</Typography.Text>
+                                    <Typography.Text className="text-textGreyLight text-sm">Sedan | 5 seats</Typography.Text>
                                 </Flex>
                             </Col>
 
-                            {/* Price + coupon */}
                             <Col xs={24} sm={8}>
                                 <Flex vertical gap={4} align="flex-end">
-                                    <Typography.Text strong style={{ fontSize: 16 }}>
-                                        ₹10,084
-                                    </Typography.Text>
+                                    <Typography.Text strong style={{ fontSize: 16 }}>₹541</Typography.Text>
                                     <Typography.Text className="text-xs">
                                         1 Coupon Available |{' '}
                                         <Typography.Link style={{ color: '#FF4F4F', fontSize: 'inherit' }}>
@@ -120,7 +95,6 @@ const CarRentalsCart = () => {
                             </Col>
                         </Row>
 
-                        {/* Actions row */}
                         <Flex justify="flex-end" gap={12} style={{ marginTop: 12 }}>
                             <DeleteOutlined style={{ fontSize: 16, color: '#bfbfbf', cursor: 'pointer' }} />
                             <HeartOutlined style={{ fontSize: 16, color: '#bfbfbf', cursor: 'pointer' }} />
@@ -137,31 +111,23 @@ const CarRentalsCart = () => {
                         style={{ boxShadow: CARD_SHADOW }}
                     >
                         <Flex vertical gap={16}>
-                            <Typography.Text strong style={{ fontSize: 16 }}>
-                                Order Summary
-                            </Typography.Text>
+                            <Typography.Text strong style={{ fontSize: 16 }}>Order Summary</Typography.Text>
 
                             <Flex justify="space-between" align="center">
-                                <Typography.Text className="text-textGreyLight text-sm">
-                                    Amount Payable Online
-                                </Typography.Text>
-                                <Typography.Text className="text-sm">₹10,084</Typography.Text>
+                                <Typography.Text className="text-textGreyLight text-sm">Amount Payable Online</Typography.Text>
+                                <Typography.Text className="text-sm">₹541</Typography.Text>
                             </Flex>
 
                             <Flex justify="space-between" align="center">
-                                <Typography.Text className="text-textGreyLight text-sm">
-                                    Balance to driver (Offline)
-                                </Typography.Text>
-                                <Typography.Text className="text-sm">₹18,728</Typography.Text>
+                                <Typography.Text className="text-textGreyLight text-sm">Balance to driver (Offline)</Typography.Text>
+                                <Typography.Text className="text-sm">₹961</Typography.Text>
                             </Flex>
 
                             <Divider style={{ margin: '4px 0' }} />
 
                             <Flex justify="space-between" align="center">
                                 <Typography.Text strong>Total Payable</Typography.Text>
-                                <Typography.Text strong style={{ fontSize: 18 }}>
-                                    ₹10,084
-                                </Typography.Text>
+                                <Typography.Text strong style={{ fontSize: 18 }}>₹541</Typography.Text>
                             </Flex>
 
                             <Button
@@ -169,9 +135,7 @@ const CarRentalsCart = () => {
                                 danger
                                 block
                                 size="large"
-                                onClick={() =>
-                                    navigate(`/${paths.dashboard.carRentalsPayment}`)
-                                }
+                                onClick={() => navigate(`/${paths.dashboard.carRentalsPayment}`)}
                             >
                                 Proceed to Payment
                             </Button>
