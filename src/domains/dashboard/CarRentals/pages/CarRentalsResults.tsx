@@ -742,7 +742,7 @@ const CarRentalsResults = () => {
                                                         danger
                                                         block
                                                         size="large"
-                                                        onClick={() => navigate(`/${paths.dashboard.carRentalsCart}`)}
+                                                        onClick={() => navigate(`/${paths.dashboard.carRentalsTravellerDetails}`)}
                                                     >
                                                         Book Now @ ₹{paymentOption === 'part' ? partPay(car.selling_price) : car.selling_price}
                                                     </Button>

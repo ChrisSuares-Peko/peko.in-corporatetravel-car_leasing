@@ -6,6 +6,9 @@ const CarRentalsHome = lazy(
 const CarRentalsResults = lazy(
     () => import('@src/domains/dashboard/CarRentals/pages/CarRentalsResults')
 );
+const CarRentalsTravellerDetails = lazy(
+    () => import('@src/domains/dashboard/CarRentals/pages/CarRentalsTravellerDetails')
+);
 const CarRentalsCart = lazy(
     () => import('@src/domains/dashboard/CarRentals/pages/CarRentalsCart')
 );
@@ -16,6 +19,7 @@ const CarRentalsPayment = lazy(
 export const carRentalsRoutes = [
     { element: <CarRentalsHome />, index: true },
     { element: <CarRentalsResults />, path: 'results' },
+    { element: <CarRentalsTravellerDetails />, path: 'traveller-details' },
     { element: <CarRentalsCart />, path: 'cart' },
     { element: <CarRentalsPayment />, path: 'payment' },
 ];
