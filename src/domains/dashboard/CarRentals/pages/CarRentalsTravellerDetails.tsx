@@ -1,44 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 
 import { paths } from '@src/routes/paths';
 
-import {
-    Button,
-    Card,
-    Col,
-    Collapse,
-    DatePicker,
-    Flex,
-    Input,
-    Radio,
-    Row,
-    Select,
-    Typography,
-} from 'antd';
-import { DownOutlined, SearchOutlined, UpOutlined } from '@ant-design/icons';
+import { Button, Card, Col, Flex, Input, Radio, Row, Select, Typography } from 'antd';
 
 const CARD_SHADOW = '0px 1.94px 19.398px 0px rgba(0, 0, 0, 0.10)';
 
+const ACTIVE_RADIO_STYLE: React.CSSProperties = {
+    background: '#FF4F4F',
+    borderColor: '#FF4F4F',
+    color: '#fff',
+};
+
+type EmployeeData = {
+    firstName: string;
+    lastName: string;
+    gender: string;
+    phone: string;
+    email: string;
+    address: string;
+};
+
+const employeeData: Record<string, EmployeeData> = {
+    'sarah-johnson': { firstName: 'Sarah', lastName: 'Johnson', gender: 'female', phone: '9876543210', email: 'sarah.johnson@company.com', address: '12 MG Road, Bangalore' },
+    'rahul-sharma':  { firstName: 'Rahul',  lastName: 'Sharma',  gender: 'male',   phone: '9845012345', email: 'rahul.sharma@company.com',  address: '45 Linking Road, Mumbai' },
+    'priya-mehta':   { firstName: 'Priya',  lastName: 'Mehta',   gender: 'female', phone: '9900123456', email: 'priya.mehta@company.com',   address: '8 Jubilee Hills, Hyderabad' },
+    'amit-verma':    { firstName: 'Amit',   lastName: 'Verma',   gender: 'male',   phone: '9812345678', email: 'amit.verma@company.com',    address: '22 Connaught Place, Delhi' },
+    'neha-kapoor':   { firstName: 'Neha',   lastName: 'Kapoor',  gender: 'female', phone: '9988776655', email: 'neha.kapoor@company.com',   address: '5 Anna Nagar, Chennai' },
+    'vikram-singh':  { firstName: 'Vikram', lastName: 'Singh',   gender: 'male',   phone: '9776655443', email: 'vikram.singh@company.com',  address: '33 Koregaon Park, Pune' },
+};
+
 const EMPLOYEE_OPTIONS = [
-    { value: 'Sarah Johnson', label: 'Sarah Johnson' },
-    { value: 'Rahul Sharma', label: 'Rahul Sharma' },
-    { value: 'Priya Mehta', label: 'Priya Mehta' },
-    { value: 'Amit Verma', label: 'Amit Verma' },
+    { value: 'sarah-johnson', label: 'Sarah Johnson (sarah.johnson@company.com)' },
+    { value: 'rahul-sharma', label: 'Rahul Sharma (rahul.sharma@company.com)' },
+    { value: 'priya-mehta', label: 'Priya Mehta (priya.mehta@company.com)' },
+    { value: 'amit-verma', label: 'Amit Verma (amit.verma@company.com)' },
+    { value: 'neha-kapoor', label: 'Neha Kapoor (neha.kapoor@company.com)' },
+    { value: 'vikram-singh', label: 'Vikram Singh (vikram.singh@company.com)' },
 ];
 
-const ID_TYPE_OPTIONS = [
-    { value: 'passport', label: 'Passport' },
-    { value: 'aadhaar', label: 'Aadhaar Card' },
-    { value: 'pan', label: 'PAN Card' },
-    { value: 'dl', label: 'Driving Licence' },
-];
-
-const FieldLabel = ({ children, required }: { children: string; required?: boolean }) => (
+const FieldLabel = ({ children }: { children: string }) => (
     <Typography.Text className="text-xs text-textGreyLight" style={{ display: 'block' }}>
-        {required && <span style={{ color: 'red' }}>* </span>}
         {children}
     </Typography.Text>
 );
@@ -46,151 +50,138 @@ const FieldLabel = ({ children, required }: { children: string; required?: boole
 const CarRentalsTravellerDetails = () => {
     const navigate = useNavigate();
 
-    return (
-        <Flex vertical gap={20}>
-            <Typography.Title level={4} className="!mb-0">
-                Traveller Details
-            </Typography.Title>
+    const [selectedEmployeeKey, setSelectedEmployeeKey] = useState('sarah-johnson');
+    const [employee, setEmployee] = useState<EmployeeData>(employeeData['sarah-johnson']);
 
-            <Card
-                bordered={false}
-                bodyStyle={{ padding: 24 }}
-                className="rounded-xl"
-                style={{ boxShadow: CARD_SHADOW }}
-            >
-                <Collapse
-                    expandIconPosition="end"
-                    className="w-full border-none"
-                    defaultActiveKey={['adult-1']}
-                    expandIcon={({ isActive }) => (isActive ? <UpOutlined /> : <DownOutlined />)}
-                    items={[
-                        {
-                            key: 'adult-1',
-                            label: <Typography.Text strong>Adult Passenger 1</Typography.Text>,
-                            children: (
-                                <Flex vertical gap={20}>
+    const handleSelectEmployee = (key: string) => {
+        setSelectedEmployeeKey(key);
+        setEmployee(employeeData[key]);
+    };
+
+    const updateField = (field: keyof EmployeeData) => (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmployee(prev => ({ ...prev, [field]: e.target.value }));
+    };
+
+    return (
+        <Row>
+            <Col offset={4} span={16}>
+                <Flex vertical gap={20}>
+                    <Typography.Title level={4} className="!mb-0">
+                        Traveller Details
+                    </Typography.Title>
+
+                    <Card
+                        bordered={false}
+                        bodyStyle={{ padding: 24 }}
+                        className="rounded-xl"
+                        style={{ boxShadow: CARD_SHADOW }}
+                    >
+                        <Flex vertical gap={20}>
+                            <Flex vertical gap={4}>
+                                <FieldLabel>Select Employee</FieldLabel>
+                                <Select
+                                    className="w-full"
+                                    size="large"
+                                    showSearch
+                                    optionFilterProp="label"
+                                    placeholder="Search and select employee"
+                                    value={selectedEmployeeKey}
+                                    onChange={handleSelectEmployee}
+                                    options={EMPLOYEE_OPTIONS}
+                                />
+                            </Flex>
+
+                            <Row gutter={[24, 20]}>
+                                <Col xs={24} md={12}>
                                     <Flex vertical gap={4}>
-                                        <Typography.Text strong className="text-sm">
-                                            Seat Number U9
-                                        </Typography.Text>
-                                        <Select
-                                            className="w-full"
+                                        <FieldLabel>First Name</FieldLabel>
+                                        <Input size="large" value={employee.firstName} onChange={updateField('firstName')} />
+                                    </Flex>
+                                </Col>
+                                <Col xs={24} md={12}>
+                                    <Flex vertical gap={4}>
+                                        <FieldLabel>Last Name</FieldLabel>
+                                        <Input size="large" value={employee.lastName} onChange={updateField('lastName')} />
+                                    </Flex>
+                                </Col>
+
+                                <Col xs={24} md={12}>
+                                    <Flex vertical gap={4}>
+                                        <FieldLabel>Gender</FieldLabel>
+                                        <Radio.Group
+                                            value={employee.gender}
+                                            onChange={e => setEmployee(prev => ({ ...prev, gender: e.target.value }))}
+                                        >
+                                            <Radio.Button
+                                                value="male"
+                                                style={employee.gender === 'male' ? ACTIVE_RADIO_STYLE : undefined}
+                                            >
+                                                Male
+                                            </Radio.Button>
+                                            <Radio.Button
+                                                value="female"
+                                                style={employee.gender === 'female' ? ACTIVE_RADIO_STYLE : undefined}
+                                            >
+                                                Female
+                                            </Radio.Button>
+                                        </Radio.Group>
+                                    </Flex>
+                                </Col>
+                                <Col xs={24} md={12}>
+                                    <Flex vertical gap={4}>
+                                        <FieldLabel>Phone Number</FieldLabel>
+                                        <Input
                                             size="large"
-                                            showSearch
-                                            suffixIcon={<SearchOutlined />}
-                                            defaultValue="Sarah Johnson"
-                                            options={EMPLOYEE_OPTIONS}
+                                            addonBefore="🇮🇳 +91"
+                                            value={employee.phone}
+                                            onChange={updateField('phone')}
                                         />
                                     </Flex>
+                                </Col>
 
-                                    <Row gutter={[24, 20]}>
-                                        <Col xs={24} md={12}>
-                                            <Flex vertical gap={4}>
-                                                <FieldLabel>First Name</FieldLabel>
-                                                <Input size="large" defaultValue="Sarah" />
-                                            </Flex>
-                                        </Col>
-                                        <Col xs={24} md={12}>
-                                            <Flex vertical gap={4}>
-                                                <FieldLabel>Last Name</FieldLabel>
-                                                <Input size="large" defaultValue="Johnson" />
-                                            </Flex>
-                                        </Col>
+                                <Col xs={24}>
+                                    <Flex vertical gap={4}>
+                                        <FieldLabel>Email</FieldLabel>
+                                        <Input size="large" value={employee.email} onChange={updateField('email')} />
+                                    </Flex>
+                                </Col>
 
-                                        <Col xs={24} md={12}>
-                                            <Flex vertical gap={4}>
-                                                <FieldLabel>Date of Birth</FieldLabel>
-                                                <DatePicker
-                                                    className="w-full"
-                                                    size="large"
-                                                    format="DD/MM/YYYY"
-                                                    defaultValue={dayjs('1995-10-10', 'YYYY-MM-DD')}
-                                                />
-                                            </Flex>
-                                        </Col>
-                                        <Col xs={24} md={12}>
-                                            <Flex vertical gap={4}>
-                                                <FieldLabel>Gender</FieldLabel>
-                                                <Radio.Group defaultValue="female" buttonStyle="solid">
-                                                    <Radio.Button value="male">Male</Radio.Button>
-                                                    <Radio.Button value="female">Female</Radio.Button>
-                                                </Radio.Group>
-                                            </Flex>
-                                        </Col>
+                                <Col xs={24}>
+                                    <Flex vertical gap={4}>
+                                        <FieldLabel>Address</FieldLabel>
+                                        <Input size="large" value={employee.address} onChange={updateField('address')} />
+                                    </Flex>
+                                </Col>
+                            </Row>
+                        </Flex>
+                    </Card>
 
-                                        <Col xs={24} md={12}>
-                                            <Flex vertical gap={4}>
-                                                <FieldLabel>Phone Number</FieldLabel>
-                                                <Input
-                                                    size="large"
-                                                    addonBefore="🇮🇳 +91"
-                                                    defaultValue="1234567890"
-                                                />
-                                            </Flex>
-                                        </Col>
-                                        <Col xs={24} md={12}>
-                                            <Flex vertical gap={4}>
-                                                <FieldLabel>Email</FieldLabel>
-                                                <Input size="large" defaultValue="sarahjohnson@example.com" />
-                                            </Flex>
-                                        </Col>
-
-                                        <Col xs={24} md={12}>
-                                            <Flex vertical gap={4}>
-                                                <FieldLabel required>ID Type</FieldLabel>
-                                                <Select
-                                                    className="w-full"
-                                                    size="large"
-                                                    placeholder="Select ID type"
-                                                    options={ID_TYPE_OPTIONS}
-                                                />
-                                            </Flex>
-                                        </Col>
-                                        <Col xs={24} md={12}>
-                                            <Flex vertical gap={4}>
-                                                <FieldLabel required>ID Number</FieldLabel>
-                                                <Input size="large" placeholder="Enter ID number" />
-                                            </Flex>
-                                        </Col>
-
-                                        <Col xs={24}>
-                                            <Flex vertical gap={4}>
-                                                <FieldLabel>Address</FieldLabel>
-                                                <Input size="large" placeholder="Enter Address" />
-                                            </Flex>
-                                        </Col>
-                                    </Row>
-                                </Flex>
-                            ),
-                        },
-                    ]}
-                />
-            </Card>
-
-            <Flex
-                justify="flex-end"
-                gap={12}
-                className="sticky bottom-0 z-10"
-                style={{ background: '#fff', padding: '16px 0', borderTop: '1px solid #F0F0F0' }}
-            >
-                <Button
-                    danger
-                    ghost
-                    size="large"
-                    onClick={() => navigate(`/${paths.dashboard.carRentalsResults}`)}
-                >
-                    Back
-                </Button>
-                <Button
-                    type="primary"
-                    danger
-                    size="large"
-                    onClick={() => navigate(`/${paths.dashboard.carRentalsCart}`)}
-                >
-                    Continue to Cart
-                </Button>
-            </Flex>
-        </Flex>
+                    <Flex
+                        justify="flex-end"
+                        gap={12}
+                        className="sticky bottom-0 z-10"
+                        style={{ background: '#fff', padding: '16px 0', borderTop: '1px solid #F0F0F0' }}
+                    >
+                        <Button
+                            danger
+                            ghost
+                            size="large"
+                            onClick={() => navigate(`/${paths.dashboard.carRentalsResults}`)}
+                        >
+                            Back
+                        </Button>
+                        <Button
+                            type="primary"
+                            danger
+                            size="large"
+                            onClick={() => navigate(`/${paths.dashboard.carRentalsCart}`)}
+                        >
+                            Proceed to Cart
+                        </Button>
+                    </Flex>
+                </Flex>
+            </Col>
+        </Row>
     );
 };
 
