@@ -37,7 +37,7 @@ const CarRentalsCart = () => {
     return (
         <Flex vertical gap={20}>
             <Typography.Title level={4} className="!mb-0">
-                Cart Summary
+                Review Booking
             </Typography.Title>
 
             <Row gutter={[24, 24]} align="top">
@@ -98,6 +98,33 @@ const CarRentalsCart = () => {
                         <Flex justify="flex-end" gap={12} style={{ marginTop: 12 }}>
                             <DeleteOutlined style={{ fontSize: 16, color: '#bfbfbf', cursor: 'pointer' }} />
                             <HeartOutlined style={{ fontSize: 16, color: '#bfbfbf', cursor: 'pointer' }} />
+                        </Flex>
+
+                        <Divider />
+
+                        <Flex vertical gap={14}>
+                            <Typography.Text strong>Rider Details</Typography.Text>
+
+                            <Row gutter={[16, 14]}>
+                                <Col xs={24} sm={12}>
+                                    <Flex vertical gap={2}>
+                                        <Typography.Text className="text-textGreyColor text-xs">Full Name</Typography.Text>
+                                        <Typography.Text className="text-valueText text-sm">Sarah Johnson</Typography.Text>
+                                    </Flex>
+                                </Col>
+                                <Col xs={24} sm={12}>
+                                    <Flex vertical gap={2}>
+                                        <Typography.Text className="text-textGreyColor text-xs">Phone Number</Typography.Text>
+                                        <Typography.Text className="text-valueText text-sm">+91 9876543210</Typography.Text>
+                                    </Flex>
+                                </Col>
+                                <Col xs={24}>
+                                    <Flex vertical gap={2}>
+                                        <Typography.Text className="text-textGreyColor text-xs">Email</Typography.Text>
+                                        <Typography.Text className="text-valueText text-sm">sarah.johnson@company.com</Typography.Text>
+                                    </Flex>
+                                </Col>
+                            </Row>
                         </Flex>
                     </Card>
                 </Col>
