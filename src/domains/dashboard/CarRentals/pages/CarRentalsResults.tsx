@@ -58,6 +58,14 @@ const VehicleImage = ({ make, model, width = 120, height = 80 }: {
     </div>
 );
 
+// ─── YesNoIcon ───────────────────────────────────────────────────────────────
+
+const YesNoIcon = ({ value }: { value: string }) => (
+    value === 'Yes'
+        ? <CheckCircleOutlined style={{ color: '#52c41a' }} />
+        : <CloseCircleOutlined style={{ color: '#bfbfbf' }} />
+);
+
 // ─── Static data ─────────────────────────────────────────────────────────────
 
 const listings = [
@@ -71,6 +79,11 @@ const listings = [
         applicable_offering: { rented_for: '4hrs/40kms', booking_type: 'Hourly', additional_charge_per_km: 23 },
         exclusions_services: ['Toll Tax', 'State Tax', 'Parking Charges', 'Driver Tip'],
         inclusions_services: ['Fuel Charges', 'Driver Charges', 'GST'],
+        upgrades: { pet_allowed: 'No', roof_top_carrier: 'No' },
+        free_add_ons: {
+            newspaper: 'No', water_bottle: 'No', wet_wipes: 'No',
+            tissue_box: 'No', sanitizer: 'No', car_perfume: 'No', sos_button: 'No'
+        },
         rating_score: 4.7, total_reviews: 85, rentals_kms: 200,
     },
     {
@@ -83,6 +96,11 @@ const listings = [
         applicable_offering: { rented_for: '4hrs/40kms', booking_type: 'Hourly', additional_charge_per_km: 23 },
         exclusions_services: ['Toll Tax', 'State Tax', 'Parking Charges', 'Driver Tip'],
         inclusions_services: ['Fuel Charges', 'Driver Charges', 'GST'],
+        upgrades: { pet_allowed: 'No', roof_top_carrier: 'No' },
+        free_add_ons: {
+            newspaper: 'No', water_bottle: 'No', wet_wipes: 'No',
+            tissue_box: 'No', sanitizer: 'No', car_perfume: 'No', sos_button: 'No'
+        },
         rating_score: 4.7, total_reviews: 13, rentals_kms: 200,
     },
     {
@@ -95,6 +113,11 @@ const listings = [
         applicable_offering: { rented_for: '4hrs/40kms', booking_type: 'Hourly', additional_charge_per_km: 23 },
         exclusions_services: ['Toll Tax', 'State Tax', 'Parking Charges', 'Driver Tip'],
         inclusions_services: ['Fuel Charges', 'Driver Charges', 'GST'],
+        upgrades: { pet_allowed: 'No', roof_top_carrier: 'No' },
+        free_add_ons: {
+            newspaper: 'No', water_bottle: 'No', wet_wipes: 'No',
+            tissue_box: 'No', sanitizer: 'No', car_perfume: 'No', sos_button: 'No'
+        },
         rating_score: 4.4, total_reviews: 17, rentals_kms: 200,
     },
     {
@@ -107,6 +130,11 @@ const listings = [
         applicable_offering: { rented_for: '4hrs/40kms', booking_type: 'Hourly', additional_charge_per_km: 23 },
         exclusions_services: ['Toll Tax', 'State Tax', 'Parking Charges', 'Driver Tip'],
         inclusions_services: ['Fuel Charges', 'Driver Charges', 'GST'],
+        upgrades: { pet_allowed: 'No', roof_top_carrier: 'No' },
+        free_add_ons: {
+            newspaper: 'No', water_bottle: 'No', wet_wipes: 'No',
+            tissue_box: 'No', sanitizer: 'No', car_perfume: 'No', sos_button: 'No'
+        },
         rating_score: 4.9, total_reviews: 83, rentals_kms: 200,
     },
     {
@@ -119,6 +147,11 @@ const listings = [
         applicable_offering: { rented_for: '4hrs/40kms', booking_type: 'Hourly', additional_charge_per_km: 24 },
         exclusions_services: ['Toll Tax', 'State Tax', 'Parking Charges', 'Driver Tip'],
         inclusions_services: ['Fuel Charges', 'Driver Charges', 'GST'],
+        upgrades: { pet_allowed: 'No', roof_top_carrier: 'No' },
+        free_add_ons: {
+            newspaper: 'No', water_bottle: 'No', wet_wipes: 'No',
+            tissue_box: 'No', sanitizer: 'No', car_perfume: 'No', sos_button: 'No'
+        },
         rating_score: 4.2, total_reviews: 22, rentals_kms: 200,
     },
     {
@@ -131,6 +164,11 @@ const listings = [
         applicable_offering: { rented_for: '4hrs/40kms', booking_type: 'Hourly', additional_charge_per_km: 31 },
         exclusions_services: ['Toll Tax', 'State Tax', 'Parking Charges', 'Driver Tip'],
         inclusions_services: ['Fuel Charges', 'Driver Charges', 'GST'],
+        upgrades: { pet_allowed: 'No', roof_top_carrier: 'No' },
+        free_add_ons: {
+            newspaper: 'No', water_bottle: 'No', wet_wipes: 'No',
+            tissue_box: 'No', sanitizer: 'No', car_perfume: 'No', sos_button: 'Yes'
+        },
         rating_score: 4.7, total_reviews: 459, rentals_kms: 200,
     },
     {
@@ -143,6 +181,11 @@ const listings = [
         applicable_offering: { rented_for: '4hrs/40kms', booking_type: 'Hourly', additional_charge_per_km: 31 },
         exclusions_services: ['Toll Tax', 'State Tax', 'Parking Charges', 'Driver Tip'],
         inclusions_services: ['Fuel Charges', 'Driver Charges', 'GST'],
+        upgrades: { pet_allowed: 'No', roof_top_carrier: 'No' },
+        free_add_ons: {
+            newspaper: 'No', water_bottle: 'No', wet_wipes: 'No',
+            tissue_box: 'No', sanitizer: 'No', car_perfume: 'No', sos_button: 'Yes'
+        },
         rating_score: 4.8, total_reviews: 5, rentals_kms: 200,
     },
     {
@@ -155,6 +198,11 @@ const listings = [
         applicable_offering: { rented_for: '4hrs/40kms', booking_type: 'Hourly', additional_charge_per_km: 27 },
         exclusions_services: ['Toll Tax', 'State Tax', 'Parking Charges', 'Driver Tip'],
         inclusions_services: ['Fuel Charges', 'Driver Charges', 'GST'],
+        upgrades: { pet_allowed: 'No', roof_top_carrier: 'No' },
+        free_add_ons: {
+            newspaper: 'No', water_bottle: 'No', wet_wipes: 'No',
+            tissue_box: 'No', sanitizer: 'No', car_perfume: 'No', sos_button: 'Yes'
+        },
         rating_score: 4.5, total_reviews: 5, rentals_kms: 200,
     },
     {
@@ -167,6 +215,11 @@ const listings = [
         applicable_offering: { rented_for: '4hrs/40kms', booking_type: 'Hourly', additional_charge_per_km: 27 },
         exclusions_services: ['Toll Tax', 'State Tax', 'Parking Charges', 'Driver Tip'],
         inclusions_services: ['Fuel Charges', 'Driver Charges', 'GST'],
+        upgrades: { pet_allowed: 'No', roof_top_carrier: 'No' },
+        free_add_ons: {
+            newspaper: 'No', water_bottle: 'No', wet_wipes: 'No',
+            tissue_box: 'No', sanitizer: 'No', car_perfume: 'No', sos_button: 'Yes'
+        },
         rating_score: 4.8, total_reviews: 105, rentals_kms: 200,
     },
     {
@@ -179,6 +232,11 @@ const listings = [
         applicable_offering: { rented_for: '4hrs/40kms', booking_type: 'Hourly', additional_charge_per_km: 27 },
         exclusions_services: ['Toll Tax', 'State Tax', 'Parking Charges', 'Driver Tip'],
         inclusions_services: ['Fuel Charges', 'Driver Charges', 'GST'],
+        upgrades: { pet_allowed: 'No', roof_top_carrier: 'No' },
+        free_add_ons: {
+            newspaper: 'No', water_bottle: 'No', wet_wipes: 'No',
+            tissue_box: 'No', sanitizer: 'No', car_perfume: 'No', sos_button: 'No'
+        },
         rating_score: 3.1, total_reviews: 1, rentals_kms: 200,
     },
 ];
@@ -210,6 +268,16 @@ const BOOKING_TYPE_MAP: Record<string, string> = {
     outstationRoundTrip: 'round-trip',
     airportTransfer:     'airport',
     localHourly:         'local',
+};
+
+const FREE_ADD_ON_LABELS: Record<string, string> = {
+    newspaper:    'Newspaper',
+    water_bottle: 'Water Bottle',
+    wet_wipes:    'Wet Wipes',
+    tissue_box:   'Tissue Box',
+    sanitizer:    'Sanitizer',
+    car_perfume:  'Car Perfume',
+    sos_button:   'SOS Button',
 };
 
 // ─── Component ───────────────────────────────────────────────────────────────
@@ -594,7 +662,7 @@ const CarRentalsResults = () => {
                                                 ₹{car.applicable_offering.additional_charge_per_km}/km beyond limit
                                             </Typography.Text>
                                             <Button type="primary" danger onClick={() => toggleCard(i)}>
-                                                {expandedCard === i ? 'Close' : 'View Details'}
+                                                {expandedCard === i ? 'Close' : 'Book Now'}
                                             </Button>
                                         </Flex>
                                     </Col>
@@ -684,31 +752,80 @@ const CarRentalsResults = () => {
                                                     <Row gutter={[16, 8]}>
                                                         <Col xs={12}>
                                                             <Flex vertical gap={8}>
-                                                                <Typography.Text strong className="text-sm">
+                                                                <Typography.Text strong className="text-sm" style={{ color: '#171717' }}>
                                                                     Inclusions
                                                                 </Typography.Text>
-                                                                {car.inclusions_services.map(item => (
+                                                                {(car.inclusions_services.length > 0
+                                                                    ? car.inclusions_services
+                                                                    : ['Fuel Charges', 'Driver Charges', 'GST']
+                                                                ).map(item => (
                                                                     <Flex gap={6} align="center" key={item}>
                                                                         <CheckCircleOutlined style={{ color: '#52c41a' }} />
-                                                                        <Typography.Text className="text-xs">{item}</Typography.Text>
+                                                                        <Typography.Text className="text-xs" style={{ color: '#171717' }}>{item}</Typography.Text>
                                                                     </Flex>
                                                                 ))}
                                                             </Flex>
                                                         </Col>
                                                         <Col xs={12}>
                                                             <Flex vertical gap={8}>
-                                                                <Typography.Text strong className="text-sm">
+                                                                <Typography.Text strong className="text-sm" style={{ color: '#171717' }}>
                                                                     Exclusions
                                                                 </Typography.Text>
                                                                 {car.exclusions_services.map(item => (
                                                                     <Flex gap={6} align="center" key={item}>
                                                                         <CloseCircleOutlined style={{ color: '#FF4F4F' }} />
-                                                                        <Typography.Text className="text-xs">{item}</Typography.Text>
+                                                                        <Typography.Text className="text-xs" style={{ color: '#595959' }}>{item}</Typography.Text>
                                                                     </Flex>
                                                                 ))}
                                                             </Flex>
                                                         </Col>
                                                     </Row>
+
+                                                    <Divider style={{ margin: '4px 0' }} />
+
+                                                    <Flex vertical gap={8}>
+                                                        <Typography.Text strong className="text-sm" style={{ color: '#171717' }}>
+                                                            Free Add-ons
+                                                        </Typography.Text>
+                                                        <Row gutter={[8, 8]}>
+                                                            {Object.entries(car.free_add_ons).map(([key, value]) => (
+                                                                <Col xs={8} key={key}>
+                                                                    <Flex justify="space-between" align="center" gap={4}>
+                                                                        <Typography.Text className="text-xs" style={{ color: '#171717' }}>
+                                                                            {FREE_ADD_ON_LABELS[key]}
+                                                                        </Typography.Text>
+                                                                        <YesNoIcon value={value} />
+                                                                    </Flex>
+                                                                </Col>
+                                                            ))}
+                                                        </Row>
+                                                    </Flex>
+
+                                                    <Divider style={{ margin: '4px 0' }} />
+
+                                                    <Flex vertical gap={8}>
+                                                        <Typography.Text strong className="text-sm" style={{ color: '#171717' }}>
+                                                            Upgrades
+                                                        </Typography.Text>
+                                                        <Row gutter={[8, 8]}>
+                                                            <Col xs={12}>
+                                                                <Flex justify="space-between" align="center" gap={4}>
+                                                                    <Typography.Text className="text-xs" style={{ color: '#171717' }}>
+                                                                        Pet Allowed
+                                                                    </Typography.Text>
+                                                                    <YesNoIcon value={car.upgrades.pet_allowed} />
+                                                                </Flex>
+                                                            </Col>
+                                                            <Col xs={12}>
+                                                                <Flex justify="space-between" align="center" gap={4}>
+                                                                    <Typography.Text className="text-xs" style={{ color: '#171717' }}>
+                                                                        Roof Top Carrier
+                                                                    </Typography.Text>
+                                                                    <YesNoIcon value={car.upgrades.roof_top_carrier} />
+                                                                </Flex>
+                                                            </Col>
+                                                        </Row>
+                                                    </Flex>
 
                                                     <Divider style={{ margin: '4px 0' }} />
 
